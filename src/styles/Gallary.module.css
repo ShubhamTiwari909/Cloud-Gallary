@@ -49,7 +49,7 @@
 
 @media screen and (min-width:768px) {
     .full_screen {
-        width: 50vw;
+        width: fit-content;
         height: 100vh;
     }
 }

@@ -15,6 +15,7 @@ import {
 } from "react-share"
 import Details from "./Details"
 import { saveAs } from 'file-saver';
+import Image from "next/image"
 
 function GallaryCard({ id, folderUrl, setImages, imageUrl, imageName, createdAt, size, contentType, setOverlay }) {
     const [detailPopup, setDetailPopup] = useState(false)
@@ -22,16 +23,16 @@ function GallaryCard({ id, folderUrl, setImages, imageUrl, imageName, createdAt,
     const [urlCopiedText, setUrlCopiedText] = useState(false)
     return (
         <div className="p-3 border-2 border-purple-400 bg-slate-900 text-white rounded-xl flex flex-col justify-between min-h-200">
-            <img src={imageUrl}
+            <Image src={imageUrl}
                 alt="Gallary Image"
-                className={`border-2 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-101 cursor-pointer` : ""}`}
+                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-101 cursor-pointer` : ""}`}
                 width={200}
                 height={200}
                 onClick={() => {
                     setFullScreen(true)
                     setOverlay(true)
-                }} />
-            <div className={`${fullScreen ? "d-none" : "flex justify-between px-4 mt-2"}`}>
+                }} unoptimized/>
+            <div className={`${fullScreen ? "d-none" : "flex justify-between px-4 mt-3"}`}>
                 <button className="p-1 rounded-full border-2 border-red-400"
                     onClick={(e) => {
                         deleteImage(id, setImages, imageName, folderUrl)

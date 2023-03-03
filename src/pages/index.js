@@ -1,3 +1,4 @@
+import Head from "next/head"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
 import Login from "../../components/Login"
@@ -14,6 +15,9 @@ export default function Signin() {
 
     return (
         <>
+        <Head>
+            <title>Login | W-DRIVE</title>
+        </Head>
             <Login router={router} />
         </>
     )

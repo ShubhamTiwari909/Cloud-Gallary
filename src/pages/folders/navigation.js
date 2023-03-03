@@ -1,16 +1,22 @@
-import { useEffect,useContext } from 'react'
+import Head from 'next/head'
+import { useEffect, useContext } from 'react'
 import FolderNavbar from '../../../components/FolderNavbar'
 import { AppContext } from '../../../components/Context'
 const Folder = () => {
-    const {setTokenId} = useContext(AppContext)
+    const { setTokenId } = useContext(AppContext)
     useEffect(() => {
         let token = sessionStorage.getItem("Token")
         setTokenId(token)
-      }, [])
+    }, [])
     return (
-        <div className="mt-24">
-            <FolderNavbar />
-        </div>
+        <>
+            <Head>
+                <title>Folder Navigation</title>
+            </Head>
+            <div className="mt-24">
+                <FolderNavbar />
+            </div>
+        </>
     )
 }
 
