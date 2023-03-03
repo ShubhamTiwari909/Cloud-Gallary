@@ -1,41 +1,46 @@
-import React, { useState, useEffect,useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { getData } from "../firebase/Gallary/dbOperations"
 import GallaryCard from "./mini-components/GallaryCard"
 import GallaryForm from "./mini-components/GallaryForm"
 import styles from "@/styles/Gallary.module.css"
 import { AppContext } from './Context'
+import { getFolderSize } from '../firebase/Gallary/folderOperations'
 
-function Gallary({folderName,folderUrl}) {
+function Gallary({ folderName, folderUrl }) {
     const [overlay, setOverlay] = useState(false)
-    const {images,setImages} = useContext(AppContext)
-    
+    const { images, setImages } = useContext(AppContext)
 
     useEffect(() => {
         // Find all the prefixes and items.
-        getData(setImages,folderUrl)
+        getData(setImages, folderUrl)
     }, [folderUrl])
 
     return (
         <>
             <div className={`${overlay ? styles.overlay : ''}`}></div>
             <div>
-                <h1 className='text-center text-2xl font-bold text-slate-700'>{folderName === "default"  ? "Default" : folderName}</h1>
+                <h1 className='text-center text-2xl font-bold text-slate-700'>{folderName === "default" ? "Default" : folderName}</h1>
+                <div className='flex justify-center fixed bottom-3 right-3 z-100'>
+                    <p className='text-center mt-2 text-sm bg-slate-700 text-white px-4 py-2 rounded-xl'>
+                        Storage: {(getFolderSize(images) / 1024).toFixed(3)} mb
+                    </p>
+                </div>
                 <GallaryForm setImages={setImages} folderName={folderUrl} />
                 <section className={`mt-10 flex gap-8 flex-wrap p-x-4 justify-center `}>
                     {images.length === 0 ? <h1 className="text-center">No images</h1> :
-                        images.map(({ id, imageUrl, imageName,createdAt,size,contentType }) => {
+                        images.map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
                             return (
-                                <GallaryCard 
-                                key={id} 
-                                id={id} 
-                                folderUrl={folderUrl} 
-                                setImages={setImages} 
-                                imageName={imageName} 
-                                imageUrl={imageUrl} 
-                                createdAt={createdAt} 
-                                size={size} 
-                                contentType={contentType}
-                                setOverlay={setOverlay} />
+                                <GallaryCard
+                                    key={id}
+                                    id={id}
+                                    folderUrl={folderUrl}
+                                    setImages={setImages}
+                                    imageName={imageName}
+                                    imageUrl={imageUrl}
+                                    createdAt={createdAt}
+                                    size={size}
+                                    contentType={contentType}
+                                    setOverlay={setOverlay} />
                             )
                         })}
                 </section>

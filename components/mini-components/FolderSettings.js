@@ -5,7 +5,6 @@ import { AppContext } from '../Context'
 import styles from "@/styles/Gallary.module.css"
 import Details from './Details'
 
-
 function FolderSettings({ id, folderName, folderUrl, createdAt, setUpdate, setUpdateId, setFolder, setFolders }) {
     const { images } = useContext(AppContext)
     const [settings, setSettings] = useState(false)
@@ -38,6 +37,7 @@ function FolderSettings({ id, folderName, folderUrl, createdAt, setUpdate, setUp
                     }}>
                         Details
                     </button>
+                   
                 </div>
             </div>
             <Details

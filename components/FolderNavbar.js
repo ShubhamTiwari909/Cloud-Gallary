@@ -6,20 +6,33 @@ import formStyles from '@/styles/Form.module.css'
 import { getFolders, addFolderToDB, updateFolderToDB } from "../firebase/Gallary/folderOperations";
 import { AiTwotoneFolderOpen } from "react-icons/ai"
 import FolderSettings from "./mini-components/FolderSettings";
+import { getStorageSize } from '../firebase/Gallary/dbOperations'
+
 function FolderNavbar() {
     const [folder, setFolder] = useState("");
     const [folders, setFolders] = useState([])
     const [update, setUpdate] = useState(false)
     const [updateId, setUpdateId] = useState("")
+    const [folderStorage, setFolderStorage] = useState(0)
 
-    
     useEffect(() => {
         getFolders(setFolders)
-    }, [])
+        setTimeout(() => {
+            getStorageSize(folders,setFolderStorage)
+        }, 1000);
+    }, [folderStorage])
 
     return (
         <>
             <div className={`${styles.foldersNav}`}>
+                <div className='flex justify-center fixed bottom-3 right-3 z-100'>
+                    <button className='text-center mt-2 text-sm bg-slate-700 text-white px-4 py-2 rounded-xl'
+                        onClick={() =>
+                            getStorageSize(folders,setFolderStorage)
+                        }>
+                        Get Storage: {folderStorage} GB
+                    </button>
+                </div>
                 <form className="flex gap-8 flex-wrap justify-center items-center">
                     <InputGroup
                         title="Folder Name"
@@ -60,7 +73,7 @@ function FolderNavbar() {
                             <AiTwotoneFolderOpen color="black" size="20px" /> Default
                         </Link>
                     </li>
-                    {folders.map(({ id, folderName, folderUrl,createdAt }) => {
+                    {folders.map(({ id, folderName, folderUrl, createdAt }) => {
                         return (
                             <li key={id} className={`${styles.folderLink} relative`}>
                                 <Link href={{
@@ -72,14 +85,14 @@ function FolderNavbar() {
                                     <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
                                 </Link>
                                 <FolderSettings
-                                id={id}
-                                folderName={folderName}
-                                folderUrl={folderUrl}
-                                createdAt={createdAt}
-                                setUpdateId={setUpdateId}
-                                setFolder={setFolder}
-                                setUpdate={setUpdate}
-                                setFolders={setFolders}
+                                    id={id}
+                                    folderName={folderName}
+                                    folderUrl={folderUrl}
+                                    createdAt={createdAt}
+                                    setUpdateId={setUpdateId}
+                                    setFolder={setFolder}
+                                    setUpdate={setUpdate}
+                                    setFolders={setFolders}
                                 />
                             </li>
                         )

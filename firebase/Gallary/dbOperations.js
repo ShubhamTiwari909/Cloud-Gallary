@@ -9,9 +9,9 @@ export const addImageToDB = (e, url, setUrl, folderName) => {
         imageId: Math.floor(Math.random() * 9999999),
         imageUrl: url.url,
         imageName: url.filename,
-        contentType:url.contentType,
-        size:url.size,
-        createdAt:url.createdAt
+        contentType: url.contentType,
+        size: url.size,
+        createdAt: url.createdAt
     }).then(() => {
         setUrl({ url: "", filename: "" })
     }).catch((err) => {
@@ -26,6 +26,8 @@ export const getData = async (setImages, folderName) => {
             setImages(response.docs.map(data => {
                 return { ...data.data(), id: data.id }
             }))
+        }).catch(err => {
+            console.error(err)
         })
 }
 
@@ -42,10 +44,32 @@ export const deleteImage = (id, setImages, filename, folderName) => {
 
     deleteDoc(fieldToDelete, id)
         .then(() => {
-            getData(setImages,folderName)
+            getData(setImages, folderName)
 
         }).catch(err => {
             console.error(err)
         })
 }
 
+
+
+export const getStorageSize = async (folders,setFolderStorage) => {
+    const result = []
+    let sum = 0
+    folders.forEach((folder) => {
+        const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folder.folderUrl}/images`)
+         getDocs(databaseRef)
+            .then(response => {
+                result.push(...response.docs.map(data => {
+                    return { ...data.data(), id: data.id }
+                }))
+                const currentSum = result.reduce(function (accumulator, curValue) {
+                    return accumulator + curValue.size
+                }, 0)
+                sum += currentSum
+                setFolderStorage((sum/1048576).toFixed(3));
+            }).catch(error => {
+                console.error(error)
+            })
+    });
+}

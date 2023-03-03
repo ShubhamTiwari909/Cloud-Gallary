@@ -62,7 +62,7 @@ export const getFolders = async (setFolders) => {
 
 
 export const deleteFolder = (id, setFolders, folderUrl, images) => {
-
+    
     images.forEach(image => {
         const urlRef = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderUrl}/images`, image.id)
         deleteDoc(urlRef).then(() => {
@@ -78,7 +78,7 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
         .then((res) => {
             res.items.forEach((itemRef) => {
                 deleteObject(itemRef).then(() => {
-                    console.log("Image Deleted", itemRef.name)
+                    console.log("Image Deleted", itemRef.size)
                 }).catch((error) => {
                     console.log("Uh-oh, an error occurred!")
                 });
@@ -95,8 +95,14 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
         }).catch(err => {
             console.error(err)
         })
+}
 
-
+export const getFolderSize = (images) => {
+    let sum =0
+    images.forEach(element => {
+        sum += Number(element.size)
+    });
+    return sum
 }
 
 
