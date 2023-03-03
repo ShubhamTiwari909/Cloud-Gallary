@@ -20,7 +20,7 @@ function Navbar({ tokenId }) {
         tokenId ?
           <div className={styles.navbar
           } >
-            <Image src={Logo} className={styles.logo} alt="logo" />
+            <Image src={Logo} className={`${styles.logo} rounded-full`} alt="logo" />
             <nav className={styles.nav}>
               <>
                 <button className={styles.buttonRed}

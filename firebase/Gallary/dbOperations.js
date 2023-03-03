@@ -6,9 +6,12 @@ export const addImageToDB = (e, url, setUrl, folderName) => {
     e.preventDefault();
     const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
     addDoc(databaseRef, {
+        imageId: Math.floor(Math.random() * 9999999),
         imageUrl: url.url,
         imageName: url.filename,
-        imageId: Math.floor(Math.random() * 9999999),
+        contentType:url.contentType,
+        size:url.size,
+        createdAt:url.createdAt
     }).then(() => {
         setUrl({ url: "", filename: "" })
     }).catch((err) => {

@@ -1,23 +1,17 @@
 import React from 'react'
-import Image from "next/image";
-import { signupWithGoogle, signupWithGithub } from "../firebase/signinOperations"
+import { signupWithGoogle } from "../firebase/signinOperations"
 import { FcGoogle } from "react-icons/fc";
-import { AiFillGithub } from "react-icons/ai"
 import styles from "@/styles/Login.module.css"
-import Logo from "../src/images/logo.png"
 
-function Login({router}) {
+function Login({ router }) {
     return (
         <section className={styles.container}>
-            <div className={styles.welcomeMessage}>
-                <Image src={Logo} width="150" height="150" alt="logo" />
-                <h1>WELCOME TO W-DRIVE </h1>
+            <div>
+                <h1 className='mt-10 text-2xl md:text-6xl text-center text-white'>WELCOME TO W-DRIVE </h1>
+                <p className='text-white text-lg text-center md:text-3xl mt-4'>Your Personal Cloud Gallary</p>
             </div>
-            <div className={styles.loginContainer}>
-                <h2>Login</h2>
-                <div className={styles.buttonGroup}>
-                    <button className={styles.signinButton} onClick={() => signupWithGoogle(router)}>Sign in <FcGoogle /></button>
-                </div>
+            <div className="flex justify-center mt-3">
+                <button className={`bg-white py-4 px-10 rounded-2xl flex gap-1.5 items-center`} onClick={() => signupWithGoogle(router)}>Sign in <FcGoogle /></button>
             </div>
         </section>
     )

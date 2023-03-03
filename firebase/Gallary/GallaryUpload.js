@@ -6,7 +6,7 @@ import {
     getMetadata
 } from "firebase/storage";
 
-export function handleUpload(e, file,folderName, url, setUrl, setPercent) {
+export function handleUpload(e, file,folderName, setUrl, setPercent) {
     e.preventDefault();
 
     if (!file) {
@@ -18,7 +18,8 @@ export function handleUpload(e, file,folderName, url, setUrl, setPercent) {
         getDownloadURL(snapshot.ref).then((url) => {
             getMetadata(snapshot.ref)
                 .then((metadata) => {
-                    setUrl({ url: url, filename: metadata.name })
+                    setUrl({ url: url, filename: metadata.name,createdAt: metadata.timeCreated.substring(0, 10),
+                    size:metadata.size / 1024,contentType:metadata.contentType})
                 })
                 .catch((error) => {
                 });

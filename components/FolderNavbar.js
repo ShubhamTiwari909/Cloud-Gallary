@@ -6,13 +6,13 @@ import formStyles from '@/styles/Form.module.css'
 import { getFolders, addFolderToDB, updateFolderToDB } from "../firebase/Gallary/folderOperations";
 import { AiTwotoneFolderOpen } from "react-icons/ai"
 import FolderSettings from "./mini-components/FolderSettings";
-
 function FolderNavbar() {
     const [folder, setFolder] = useState("");
     const [folders, setFolders] = useState([])
     const [update, setUpdate] = useState(false)
     const [updateId, setUpdateId] = useState("")
 
+    
     useEffect(() => {
         getFolders(setFolders)
     }, [])
@@ -60,7 +60,7 @@ function FolderNavbar() {
                             <AiTwotoneFolderOpen color="black" size="20px" /> Default
                         </Link>
                     </li>
-                    {folders.map(({ id, folderName, folderUrl }) => {
+                    {folders.map(({ id, folderName, folderUrl,createdAt }) => {
                         return (
                             <li key={id} className={`${styles.folderLink} relative`}>
                                 <Link href={{
@@ -75,6 +75,7 @@ function FolderNavbar() {
                                 id={id}
                                 folderName={folderName}
                                 folderUrl={folderUrl}
+                                createdAt={createdAt}
                                 setUpdateId={setUpdateId}
                                 setFolder={setFolder}
                                 setUpdate={setUpdate}

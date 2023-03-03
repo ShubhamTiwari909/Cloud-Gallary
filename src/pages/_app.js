@@ -8,10 +8,7 @@ import Navbar from '../../components/Navbar'
 
 
 export default function App({ Component, pageProps }) {
-  // For date input
-  var curr = new Date();
-  curr.setDate(curr.getDate());
-  var date = curr.toISOString().substring(0, 10);
+
   //states
   const [tokenId, setTokenId] = useState(null);
   const [images, setImages] = useState([])

@@ -2,40 +2,12 @@
     height: 100vh;
     display: grid;
     place-items: center;
-    background-image: linear-gradient(to right top, #7630e3, #6c39df, #6241db, #5a46d6, #524bd1, #544ad2, #554ad2, #5749d3, #6342d9, #7038de, #7f29e2, #8e08e5);
+    background-image: url("../images/GallaryBG.jpg");
+    background-size:100% 110%;
 }
 
-.container h1{
-    color:#ffffff;
-    font-size: calc(1rem + 1vw);
-    text-align: center;
-}
-
-.welcomeMessage{
-    text-align: center;
-}
-
-.loginContainer {
-    background-color: aliceblue;
-    padding: 2rem;
-    border-radius: 10px;
-}
-
-.loginContainer h2 {
-    text-align: center;
-}
-
-.buttonGroup {
-    margin-top:20px;
-    display: flex;
-    gap: 1.5rem;
-}
-
-.signinButton{
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-    padding:0.4rem 1.6rem;
-    border: 1px solid rebeccapurple;
-    border-radius: 10px;
+@media screen and (max-width:600px) {
+    .container{
+        background-size: 100% 100%;
+    }
 }

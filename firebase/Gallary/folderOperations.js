@@ -6,6 +6,9 @@ import storage from "../firebaseConfig"
 
 export const addFolderToDB = (e, folderName, setFolderName) => {
     e.preventDefault();
+    let curr = new Date();
+    curr.setDate(curr.getDate());
+    let date = curr.toISOString().substring(0, 10);
     if (folderName === "" || folderName.startsWith(" ")) {
         alert("Please enter some text")
     }
@@ -15,6 +18,7 @@ export const addFolderToDB = (e, folderName, setFolderName) => {
         addDoc(databaseRef, {
             folderName: folderName,
             folderUrl: `${folderName}${randomNumber}`,
+            createdAt:date
         }).then(() => {
             setFolderName("")
         }).catch((err) => {

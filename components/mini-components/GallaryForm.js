@@ -23,7 +23,7 @@ function GallaryForm({ setImages, folderName }) {
                 labelClassname={styles.file_label}
                 accept="image/*" />
             <button
-                onClick={(e) => handleUpload(e, file, folderName, url, setUrl, setPercent)}
+                onClick={(e) => handleUpload(e, file, folderName, setUrl, setPercent)}
                 className={`${styles.button_sm} ${styles.button_blue}`}>Add</button>
             <p>{percent} % done</p>
             <button className={`${styles.button_sm} ${percent === 100 ? styles.button_purple : "hidden"}`} onClick={(e) => {
