@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react'
+import { useState, useContext } from 'react'
 import { BiDotsVerticalRounded } from "react-icons/bi"
 import { getId, deleteFolder } from "../../firebase/Gallary/folderOperations"
 import { AppContext } from '../Context'

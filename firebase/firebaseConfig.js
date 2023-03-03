@@ -9,13 +9,12 @@ import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAzaEinMuVkWTfIMe0iG53FG9YsaMBn5XU",
-  authDomain: "next-todo-b6b97.firebaseapp.com",
-  databaseURL: "https://next-todo-b6b97-default-rtdb.firebaseio.com",
-  projectId: "next-todo-b6b97",
-  storageBucket: "next-todo-b6b97.appspot.com",
-  messagingSenderId: "774958381155",
-  appId: "1:774958381155:web:45b23c4824fe0200f6a056"
+  apiKey: "AIzaSyDGfRqpC40MqnvrA4tCPPpT2R-4XRr6gIo",
+  authDomain: "wdrive-f9ee0.firebaseapp.com",
+  projectId: "wdrive-f9ee0",
+  storageBucket: "wdrive-f9ee0.appspot.com",
+  messagingSenderId: "277286483457",
+  appId: "1:277286483457:web:3473a08c457d1f5128f200"
 };
 
 // Initialize Firebase

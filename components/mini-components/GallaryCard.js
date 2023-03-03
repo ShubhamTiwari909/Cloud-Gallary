@@ -5,7 +5,6 @@ import { RxCross1 } from "react-icons/rx"
 import { deleteImage } from "../../firebase/Gallary/dbOperations"
 import styles from '@/styles/Gallary.module.css'
 import * as htmlToImage from 'html-to-image';
-import Image from "next/image"
 
 function GallaryCard({ id,folderUrl, setImages, imageUrl, imageName, setOverlay }) {
     const imageRef = useRef(null);

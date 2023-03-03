@@ -11,7 +11,7 @@ export const addFolderToDB = (e, folderName, setFolderName) => {
     }
     else {
         const randomNumber = Math.floor(Math.random() * 99999999999);
-        const databaseRef = collection(database, `/Todos/FoldersName/${sessionStorage.getItem("uid")}/`)
+        const databaseRef = collection(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}/`)
         addDoc(databaseRef, {
             folderName: folderName,
             folderUrl: `${folderName}${randomNumber}`,
@@ -35,7 +35,7 @@ export const updateFolderToDB = (e, folderName, setFolderName, updateId) => {
         alert("Please enter some text")
     }
     else {
-        const databaseRef = doc(database, `/Todos/FoldersName/${sessionStorage.getItem("uid")}/`, updateId)
+        const databaseRef = doc(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}/`, updateId)
         updateDoc(databaseRef, {
             folderName: folderName,
         }).then(() => {
@@ -47,7 +47,7 @@ export const updateFolderToDB = (e, folderName, setFolderName, updateId) => {
 }
 
 export const getFolders = async (setFolders) => {
-    const databaseRef = collection(database, `/Todos/FoldersName/${sessionStorage.getItem("uid")}`)
+    const databaseRef = collection(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}`)
     await getDocs(databaseRef)
         .then(response => {
             setFolders(response.docs.map(data => {
@@ -60,7 +60,7 @@ export const getFolders = async (setFolders) => {
 export const deleteFolder = (id, setFolders, folderUrl, images) => {
 
     images.forEach(image => {
-        const urlRef = doc(database, `/Todos/Images/${sessionStorage.getItem("uid")}/${folderUrl}/images`, image.id)
+        const urlRef = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderUrl}/images`, image.id)
         deleteDoc(urlRef).then(() => {
             console.log("Url Deleted", image.id)
         }).catch(err => {
@@ -84,7 +84,7 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
         });
 
     /* Deleting the folder from the database. */
-    const fieldToDelete = doc(database, `/Todos/FoldersName/${sessionStorage.getItem("uid")}`, id);
+    const fieldToDelete = doc(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}`, id);
     deleteDoc(fieldToDelete, id)
         .then(() => {
             getFolders(setFolders)

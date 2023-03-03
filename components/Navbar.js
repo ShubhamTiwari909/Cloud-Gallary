@@ -26,7 +26,6 @@ function Navbar({ tokenId }) {
                 <button className={styles.buttonRed}
                   onClick={() => logout(router, setTokenId)}>Logout</button>
                 <Link href="/folders/navigation">Gallary</Link>
-                <Link href="/home">Tasklist</Link>
               </>
             </nav>
           </div >
