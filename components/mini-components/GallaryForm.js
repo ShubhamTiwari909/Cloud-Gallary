@@ -14,7 +14,7 @@ function GallaryForm({ setImages, folderName, setOverlay }) {
 
     return (
         <>
-            <p className={successUpload ? "fixed top-0 w-full text-center py-3 bg-green-500 text-white" : "hidden"}>"Files Uploaded Successfully"</p>
+            <p className={successUpload ? "fixed top-0 w-full text-center py-3 bg-green-500 text-white" : "hidden"}>Files Uploaded Successfully</p>
             <form className="flex gap-8 justify-center items-center flex-wrap mt-5">
                 <InputGroup
                     title="Choose a File"
