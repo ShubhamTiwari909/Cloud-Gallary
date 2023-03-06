@@ -1,13 +1,12 @@
 .container {
-    height: 100vh;
-    display: grid;
-    place-items: center;
+    @apply h-screen grid place-items-center;
     background-image: url("../images/GallaryBG.jpg");
-    background-size:100% 110%;
+    background-size: 100% 110%;
 }
 
+
 @media screen and (max-width:600px) {
-    .container{
+    .container {
         background-size: 100% 100%;
     }
 }

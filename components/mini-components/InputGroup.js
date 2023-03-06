@@ -16,6 +16,7 @@ function InputGroup({title,type,name,placeholder,className,value,onChange,accept
                     value={value}
                     onChange={onChange}
                     accept={accept}
+                    multiple = {type === "file" ? true : false}
                      />
             </div>
         </div>

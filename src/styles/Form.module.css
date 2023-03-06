@@ -1,74 +1,55 @@
-.formGroup{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-}
-.input_md,.input_sm  {
-    border: 1px solid rgb(157, 124, 254);
-    border-radius: 20px;
-    padding: 0.5rem 1rem;
-    max-width: 200px;
-    color: black;
-}
+@tailwind components;
 
-.input_sm {
-    max-width: 150px;
-}
+@layer components {
+    .formGroup {
+        @apply flex flex-wrap items-center gap-4;
+    }
 
-.input_md:focus {
-    outline: none;
-}
+    .input_md,
+    .input_sm {
+        @apply border border-light-purple py-2 px-4 max-w-200 text-black rounded-3xl outline-none;
+    }
 
+    .input_sm {
+        @apply max-w-180;
+    }
 
-/* FILE INPUT */
-.input_file{
-    display: none;
-}
+    /* FILE INPUT */
+    .input_file {
+        @apply hidden;
+    }
 
-.file_label{
-    border: 1px solid rgb(100, 20, 220);
-    padding:.4rem .5rem;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .file_label {
+        @apply border border-light-purple px-2 py-1.5 rounded-md cursor-pointer;
+    }
 
 
-/* BUTTONS */
-.button_sm {
-    border: none;
-    outline-offset: 3px;
-    border-radius: 20px;
-    padding: 0.4rem 1.2rem;
-    color: #ffffff;
-}
+    /* BUTTONS */
+    .button_sm {
+        @apply border-none outline-offset-4 rounded-3xl py-1.5 px-5 text-white;
+    }
 
-.button_purple{
-    outline: 1px solid rgb(157, 124, 254);
-    background-color: rgb(157, 124, 254);
-}
-.button_blue{
-    outline: 1px solid rgb(124, 191, 254);
-    background-color: rgb(124, 191, 254);
-}
+    .button_purple {
+        @apply outline-1 outline-light-purple bg-light-purple;
+    }
 
-.button_cancel{
-    outline: 1px solid rgb(241, 79, 79);
-    background-color: rgb(241, 79,79 );
-}
+    .button_blue {
+        @apply outline-1 outline-light-blue bg-light-blue;
+    }
+
+    .button_cancel {
+        @apply outline-1 outline-light-red bg-light-red;
+
+    }
 
 
+    .select_md {
+        @apply appearance-none border border-blue-200 rounded-xl text-black py-1 px-3 min-w-120
+        appearance: none;
+    }
 
-.select_md{
-    appearance: none;
-    border: 1px solid lightblue;
-    border-radius: 10px;
-    padding:0.3rem 0.8rem;
-    color: black;
-    width: 100px;
-    min-width: 120px;
-}
-.select_md:focus,
-.select_md:hover{
-    outline:none
+    .select_md:focus,
+    .select_md:hover {
+        @apply outline-none
+    }
 }

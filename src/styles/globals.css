@@ -3,45 +3,29 @@
 @tailwind utilities;
 
 
-
 /* TYPOGRAPHY */
 .text-ellipse {
-    max-width: 200px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
+    @apply max-w-200 text-ellipsis whitespace-nowrap overflow-hidden;
 }
 
 
 .absolute-center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    @apply top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;
 }
 
 .absolute-bottom-center {
-    bottom: 0%;
-    left: 50%;
-    transform: translateX(-50%);
+    @apply bottom-0 left-2/4 -translate-x-2/4;
 }
 
 /* MENU BUTTON */
 .menu {
-    border: 1px solid grey;
-    padding: 0.3rem 0.9rem;
-    background-color: royalblue;
-    border-radius: 20px;
-    color: whitesmoke;
+    @apply border border-gray-500 py-1 px-4 bg-royalblue rounded-3xl text-slate-100;
 }
 
 
 /* Containers*/
 .formContainer {
-    border-radius: 10px;
-    padding: 1rem;
-    background-color:#280346;
-    color: #ffffff;
-    border: 5px solid rgb(170, 20, 220);
+    @apply rounded-xl p-4 bg-purple-900 border border-purple-600 text-white;
 }
 
 

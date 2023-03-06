@@ -2,21 +2,28 @@ import storage from '../firebaseConfig';
 import { addDoc, deleteDoc, collection, getDocs, doc } from 'firebase/firestore'
 import { database } from "../firebaseConfig";
 import { ref, deleteObject } from "firebase/storage"
-export const addImageToDB = (e, url, setUrl, folderName) => {
+export const addImageToDB = (e, url, setUrl, folderName,setSuccessUpload) => {
     e.preventDefault();
-    const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
-    addDoc(databaseRef, {
-        imageId: Math.floor(Math.random() * 9999999),
-        imageUrl: url.url,
-        imageName: url.filename,
-        contentType: url.contentType,
-        size: url.size,
-        createdAt: url.createdAt
-    }).then(() => {
-        setUrl({ url: "", filename: "" })
-    }).catch((err) => {
-        console.error(err)
+
+    url.forEach(url => {
+        const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
+        addDoc(databaseRef, {
+            imageId: Math.floor(Math.random() * 9999999),
+            imageUrl: url.url,
+            imageName: url.filename,
+            contentType: url.contentType,
+            size: url.size,
+            createdAt: url.createdAt
+        }).then(() => {
+            setSuccessUpload(true)
+            setTimeout(() => {
+                setSuccessUpload(false)
+            }, 2000);
+        }).catch((err) => {
+            console.error(err)
+        })
     })
+    setUrl([])
 }
 
 export const getData = async (setImages, folderName) => {
@@ -53,12 +60,12 @@ export const deleteImage = (id, setImages, filename, folderName) => {
 
 
 
-export const getStorageSize = async (folders,setFolderStorage) => {
+export const getStorageSize = async (folders, setFolderStorage) => {
     const result = []
     let sum = 0
     folders.forEach((folder) => {
         const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folder.folderUrl}/images`)
-         getDocs(databaseRef)
+        getDocs(databaseRef)
             .then(response => {
                 result.push(...response.docs.map(data => {
                     return { ...data.data(), id: data.id }
@@ -67,7 +74,7 @@ export const getStorageSize = async (folders,setFolderStorage) => {
                     return accumulator + curValue.size
                 }, 0)
                 sum += currentSum
-                setFolderStorage((sum/1048576).toFixed(3));
+                setFolderStorage((sum / 1048576).toFixed(3));
             }).catch(error => {
                 console.error(error)
             })

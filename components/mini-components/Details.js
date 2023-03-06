@@ -5,9 +5,9 @@ function Details({ details, detailPopup, setDetailPopup, setOverlay }) {
     return (
         <div className={`${detailPopup ? "" : "hidden"} w-72 md:w-96 fixed absolute-center z-101 mt-2 bg-white p-4 rounded-lg`
         }>
-            {details.map(detail => {
+            {details.map((detail,index) => {
                 return (
-                    <>
+                    <div key={index}>
                         {detail.button ?
                             detail.button
                             :
@@ -15,7 +15,7 @@ function Details({ details, detailPopup, setDetailPopup, setOverlay }) {
                                 {detail.name}: <span className='text-slate-700'>{detail.value}</span>
                             </p>
                         }
-                    </>
+                    </div>
                 )
             })}
             <button className='text-sm absolute top-2 right-2' onClick={() => {

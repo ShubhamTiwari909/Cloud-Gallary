@@ -1,55 +1,31 @@
-/* FULLSCREEN */
-.full_screen {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: fit-content;
-    object-fit: cover;
-    overflow: scroll;
-}
+@tailwind components;
 
-.overlay {
-    background-color: rgb(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-}
+@layer components {
 
-.foldersNav {
-    height: 100vh;
-    overflow: auto;
-    padding: 1rem 1.5rem;
-    border-top-right-radius: 10px;
-}
-
-.foldersList {
-    margin-top: 50px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.folderLink {
-    padding: .6rem 0.8rem;
-    border-radius: 5px;
-    background-color: rgb(218, 220, 221);
-    font-size: 1.2rem;
-}
-
-.foldersList>* {
-    max-width: 180px;
-    min-width: 180px;
-}
-
-
-@media screen and (min-width:768px) {
+    /* FULLSCREEN */
     .full_screen {
-        width: fit-content;
-        height: 100vh;
+        @apply fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 w-screen object-cover overflow-scroll md:w-fit h-screen;
     }
+
+    .overlay {
+        @apply bg-black/50 fixed top-0 bottom-0 right-0 left-0 z-100;
+    }
+
+    .foldersNav {
+        @apply h-screen overflow-auto py-4 px-6 rounded-tr-xl;
+    }
+
+    .foldersList {
+        @apply mt-12 flex flex-wrap gap-4;
+    }
+
+    .folderLink {
+        @apply px-4 py-3 rounded-md bg-peach-grey text-xl;
+    }
+
+
+    .foldersList > * {
+        @apply max-w-180 min-w-180;
+    }
+
 }
