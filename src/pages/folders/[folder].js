@@ -12,9 +12,9 @@ const Folder = () => {
             <Head>
                 <title>{folderName}</title>
             </Head>
-            <div className="mt-24">
+            <div className="mt-32">
                 <Link href="/folders/navigation"
-                    className='fixed left-1.5 text-black flex gap-2 items-center px-4 py-2 rounded-full bg-slate-200 text-sm'>
+                    className='fixed left-1.5 top-20 z-100 text-black flex gap-2 items-center px-4 py-2 rounded-full bg-slate-200 text-sm'>
                     <RxDoubleArrowLeft size="1rem" />Folders</Link>
                 <Gallary folderName={folderName} folderUrl={folder} />
             </div>

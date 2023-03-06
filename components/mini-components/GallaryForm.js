@@ -52,8 +52,6 @@ function GallaryForm({ setImages, folderName, setOverlay }) {
                         setOverlay(false);
                     }} disabled={[...file].length === success ? "" : "disabled"}>Upload</button>
                 </div>
-                {/* <p>{success}</p> file counts */}
-
             </form>
         </>
     )

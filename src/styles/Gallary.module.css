@@ -4,7 +4,7 @@
 
     /* FULLSCREEN */
     .full_screen {
-        @apply fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 w-screen object-cover overflow-scroll md:w-fit h-screen;
+        @apply fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 overflow-scroll w-fit h-fit md:h-screen;
     }
 
     .overlay {

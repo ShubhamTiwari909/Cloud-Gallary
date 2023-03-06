@@ -2,9 +2,8 @@ import storage from '../firebaseConfig';
 import { addDoc, deleteDoc, collection, getDocs, doc } from 'firebase/firestore'
 import { database } from "../firebaseConfig";
 import { ref, deleteObject } from "firebase/storage"
-export const addImageToDB = (e, url, setUrl, folderName,setSuccessUpload) => {
+export const addImageToDB = (e, url, setUrl, folderName, setSuccessUpload) => {
     e.preventDefault();
-
     url.forEach(url => {
         const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
         addDoc(databaseRef, {
@@ -40,7 +39,6 @@ export const getData = async (setImages, folderName) => {
 
 
 export const deleteImage = (id, setImages, filename, folderName) => {
-    console.log(filename)
     const fieldToDelete = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`, id)
     const storageRef = ref(storage, `/GlobalImages/${sessionStorage.getItem("uid")}/${folderName}/${filename}`);
     // Delete the file
@@ -80,3 +78,11 @@ export const getStorageSize = async (folders, setFolderStorage) => {
             })
     });
 }
+
+export const deleteAllImages = (allImages, setImages, folderName) => {
+
+    allImages.forEach(image => {
+        deleteImage(image.id,setImages,image.imageName,folderName)
+    });
+}
+
