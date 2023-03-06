@@ -4,10 +4,23 @@ import { useState } from 'react';
 import { AppContext } from "../../components/Context"
 import PropTypes from "prop-types";
 import Navbar from '../../components/Navbar'
+import * as Sentry from "@sentry/react";
+import { BrowserTracing } from "@sentry/tracing";
 
 
 
-export default function App({ Component, pageProps }) {
+Sentry.init({
+  dsn: "https://eff507962585427ab0dda6bf6d0e0be6@o4504791975788544.ingest.sentry.io/4504791977951232",
+  integrations: [new BrowserTracing()],
+
+  // Set tracesSampleRate to 1.0 to capture 100%
+  // of transactions for performance monitoring.
+  // We recommend adjusting this value in production
+  tracesSampleRate: 1.0,
+});
+
+
+function App({ Component, pageProps }) {
 
   //states
   const [tokenId, setTokenId] = useState(null);
@@ -27,6 +40,8 @@ export default function App({ Component, pageProps }) {
     </AppContext.Provider>
   )
 }
+
+export default Sentry.withProfiler(App)
 
 
 App.propTypes = {
