@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useContext } from "react"
 import { MdDeleteSweep } from "react-icons/md"
 import { BiCloudDownload } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
@@ -16,8 +16,10 @@ import {
 import Details from "./Details"
 import { saveAs } from 'file-saver';
 import Image from "next/image"
+import { AppContext } from "../Context"
 
-function GallaryCard({ id, folderUrl, setImages, imageUrl, imageName, createdAt, size, contentType, setOverlay, selectAll, deleteAll, setDeleteAll }) {
+function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, contentType }) {
+    const {setImages, setOverlay, selectAll, deleteAll, setDeleteAll} = useContext(AppContext)
     const [detailPopup, setDetailPopup] = useState(false)
     const [fullScreen, setFullScreen] = useState(false)
     const [urlCopiedText, setUrlCopiedText] = useState(false)

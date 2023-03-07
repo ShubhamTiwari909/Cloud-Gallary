@@ -7,6 +7,9 @@ module.exports = {
         '120': '120vh',
       },
       zIndex: {
+        '104':'104',
+        '103': '103',
+        '102':'102',
         '101': '101',
         '100': '100',
         '99': '99',
@@ -31,6 +34,10 @@ module.exports = {
         "light-blue":"rgb(124, 191, 254)",
         "light-red":"rgb(241, 79, 79)",
         "royalblue":"royalblue"
+      },
+      spacing:{
+        "18":"4.3rem",
+        "19":"4.8rem"
       }
     },
   },

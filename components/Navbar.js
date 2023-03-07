@@ -13,7 +13,6 @@ function Navbar({ tokenId }) {
   const router = useRouter()
   const { setTokenId } = useContext(AppContext)
 
-
   return (
     <>
       {

@@ -24,12 +24,25 @@ function App({ Component, pageProps }) {
 
   //states
   const [tokenId, setTokenId] = useState(null);
+  
+  // FOLDER
+  const [folder, setFolder] = useState("");
+  const [folders, setFolders] = useState([])
+  const [update, setUpdate] = useState(false)
+  const [updateId, setUpdateId] = useState("")
+  const [folderStorage, setFolderStorage] = useState(0)
+  
+  // GALLARY
   const [images, setImages] = useState([])
-
+  const [overlay, setOverlay] = useState(false)
+  const [selectAll, setSelectAll] = useState(false)
+  const [deleteAll, setDeleteAll] = useState([])
 
   return (
     <AppContext.Provider value={{
-      tokenId, setTokenId,images, setImages
+      tokenId, setTokenId,images, setImages,folder, setFolder,folders, setFolders,
+      update, setUpdate,updateId, setUpdateId,folderStorage, setFolderStorage,
+      overlay, setOverlay,selectAll, setSelectAll,deleteAll, setDeleteAll
     }}>
       <div className='fixed top-0 z-99 w-full'>
         <Navbar tokenId={tokenId} />

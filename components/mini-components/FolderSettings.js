@@ -5,12 +5,12 @@ import { AppContext } from '../Context'
 import styles from "@/styles/Gallary.module.css"
 import Details from './Details'
 
-function FolderSettings({ id, folderName, folderUrl, createdAt, setUpdate, setUpdateId, setFolder, setFolders }) {
-    const { images } = useContext(AppContext)
+function FolderSettings({ id, folderName, folderUrl, createdAt }) {
+    const { images, setUpdate, setUpdateId, setFolder, setFolders } = useContext(AppContext)
+
     const [settings, setSettings] = useState(false)
     const [overlay, setOverlay] = useState(false)
     const [detailPopup, setDetailPopup] = useState(false)
-
 
     return (
         <>
@@ -28,16 +28,15 @@ function FolderSettings({ id, folderName, folderUrl, createdAt, setUpdate, setUp
                         setSettings(false)
                     }}>Rename</button>
                     <button className='text-sm' onClick={() => {
-                        deleteFolder(id, setFolders, folderUrl, images)
-                        setSettings(false)
-                    }}>Delete</button>
-                    <button className='text-sm' onClick={() => {
                         setDetailPopup(true)
                         setOverlay(true)
                     }}>
                         Details
                     </button>
-                   
+                    <button className='text-sm text-red-600' onClick={() => {
+                        deleteFolder(id, setFolders, folderUrl, images)
+                        setSettings(false)
+                    }}>Delete</button>
                 </div>
             </div>
             <Details

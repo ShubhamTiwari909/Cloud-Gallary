@@ -1,24 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import InputGroup from "./mini-components/InputGroup";
 import styles from '@/styles/Gallary.module.css'
-import formStyles from '@/styles/Form.module.css'
-import { getFolders, addFolderToDB, updateFolderToDB } from "../firebase/Gallary/folderOperations";
+import { getFolders } from "../firebase/Gallary/folderOperations";
 import { AiTwotoneFolderOpen } from "react-icons/ai"
 import FolderSettings from "./mini-components/FolderSettings";
 import { getStorageSize } from '../firebase/Gallary/dbOperations'
+import FolderForm from "./mini-components/FolderForm";
+import { AppContext } from './Context'
+
 
 function FolderNavbar() {
-    const [folder, setFolder] = useState("");
-    const [folders, setFolders] = useState([])
-    const [update, setUpdate] = useState(false)
-    const [updateId, setUpdateId] = useState("")
-    const [folderStorage, setFolderStorage] = useState(0)
+    const { folder, setFolder, folders, setFolders, update, setUpdate,
+        updateId, setUpdateId, folderStorage, setFolderStorage } = useContext(AppContext)
+
 
     useEffect(() => {
         getFolders(setFolders)
         setTimeout(() => {
-            getStorageSize(folders,setFolderStorage)
+            getStorageSize(folders, setFolderStorage)
         }, 1000);
     }, [folderStorage])
 
@@ -28,52 +27,14 @@ function FolderNavbar() {
                 <div className='flex justify-center fixed bottom-3 right-3 z-100'>
                     <button className='text-center mt-2 text-sm bg-slate-700 text-white px-4 py-2 rounded-xl'
                         onClick={() =>
-                            getStorageSize(folders,setFolderStorage)
+                            getStorageSize(folders, setFolderStorage)
                         }>
                         Get Storage: {folderStorage} GB
                     </button>
                 </div>
-                <form className="flex gap-8 flex-wrap justify-center items-center">
-                    <InputGroup
-                        title="Folder Name"
-                        type="text"
-                        name="Folder name"
-                        placeholder="Enter Folder Name"
-                        className={formStyles.input_sm}
-                        value={folder}
-                        onChange={(e) => setFolder(e.target.value)}
-                    />
-                    {update ?
-                        <div className="flex gap-8 justify-center flex-wrap p-x-4">
-                            <button onClick={(e) => {
-                                updateFolderToDB(e, folder, setFolder, updateId)
-                                getFolders(setFolders)
-                                setUpdate(false)
-                            }} className={`${formStyles.button_sm} ${formStyles.button_blue}`}>Update</button>
-                            <button className={`${formStyles.button_sm} ${formStyles.button_cancel}`} onClick={() => {
-                                setFolder("")
-                                setUpdate(false)
-                            }}>Cancel</button>
-                        </div>
-                        :
-                        <button onClick={(e) => {
-                            addFolderToDB(e, folder, setFolder)
-                            getFolders(setFolders)
-                        }} className={`${formStyles.button_sm} ${formStyles.button_blue}`}>Add</button>
-                    }
-                </form>
+                <FolderForm />
                 <ul className={styles.foldersList}>
-                    <li className={`${styles.folderLink}`}>
-                        <Link href={{
-                            pathname: `/folders/default`,
-                            query: {
-                                folderName: "Default"
-                            }
-                        }} className="text-black flex gap-4 items-center">
-                            <AiTwotoneFolderOpen color="black" size="20px" /> Default
-                        </Link>
-                    </li>
-                    {folders.map(({ id, folderName, folderUrl, createdAt }) => {
+                    {folders.length === 0 ? <h2 className="text-center text-3xl md:text-6xl lg:text-9xl">No Folders</h2> :folders.map(({ id, folderName, folderUrl, createdAt }) => {
                         return (
                             <li key={id} className={`${styles.folderLink} relative`}>
                                 <Link href={{
