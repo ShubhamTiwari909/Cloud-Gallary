@@ -13,7 +13,7 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from "react-share"
-import Details from "./Details"
+import Details from "../mini-components/Details"
 import { saveAs } from 'file-saver';
 import Image from "next/image"
 import { AppContext } from "../Context"

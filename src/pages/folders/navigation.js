@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useContext } from 'react'
-import FolderNavbar from '../../../components/FolderNavbar'
+import FolderNavbar from '../../../components/Folder/FolderNavbar'
 import { AppContext } from '../../../components/Context'
 const Folder = () => {
     const { setTokenId } = useContext(AppContext)

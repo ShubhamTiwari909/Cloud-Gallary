@@ -3,7 +3,7 @@ import { BiDotsVerticalRounded } from "react-icons/bi"
 import { getId, deleteFolder } from "../../firebase/Gallary/folderOperations"
 import { AppContext } from '../Context'
 import styles from "@/styles/Gallary.module.css"
-import Details from './Details'
+import Details from '../mini-components/Details'
 
 function FolderSettings({ id, folderName, folderUrl, createdAt }) {
     const { images, setUpdate, setUpdateId, setFolder, setFolders } = useContext(AppContext)

@@ -38,11 +38,14 @@ function App({ Component, pageProps }) {
   const [selectAll, setSelectAll] = useState(false)
   const [deleteAll, setDeleteAll] = useState([])
 
+  // SEARCH
+  const [search,setSearch] = useState("")
+
   return (
     <AppContext.Provider value={{
       tokenId, setTokenId,images, setImages,folder, setFolder,folders, setFolders,
       update, setUpdate,updateId, setUpdateId,folderStorage, setFolderStorage,
-      overlay, setOverlay,selectAll, setSelectAll,deleteAll, setDeleteAll
+      overlay, setOverlay,selectAll, setSelectAll,deleteAll, setDeleteAll,search,setSearch
     }}>
       <div className='fixed top-0 z-99 w-full'>
         <Navbar tokenId={tokenId} />

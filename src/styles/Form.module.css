@@ -20,13 +20,13 @@
     }
 
     .file_label {
-        @apply border border-light-purple px-2 py-1.5 rounded-md cursor-pointer;
+        @apply border border-light-purple px-2 py-1.5 rounded-md cursor-pointer text-sm md:text-xl;
     }
 
 
     /* BUTTONS */
     .button_sm {
-        @apply border-none outline-offset-4 rounded-3xl py-1.5 px-5 text-white;
+        @apply border-none outline-offset-4 rounded-3xl py-1.5 px-5 text-sm md:text-lg text-white;
     }
 
     .button_purple {

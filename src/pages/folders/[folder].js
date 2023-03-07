@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useRouter } from 'next/router'
-import Gallary from "../../../components/Gallary"
+import Gallary from "../../../components/Gallary/Gallary"
 
 const Folder = () => {
     const router = useRouter()
@@ -11,7 +11,6 @@ const Folder = () => {
                 <title>{folderName}</title>
             </Head>
             <div className="mt-32">
-               
                 <Gallary folderName={folderName} folderUrl={folder} />
             </div>
         </>

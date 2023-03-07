@@ -1,15 +1,13 @@
 import {useContext } from 'react'
 import { getFolders, addFolderToDB, updateFolderToDB } from "../../firebase/Gallary/folderOperations";
-import InputGroup from "./InputGroup";
+import InputGroup from "../mini-components/InputGroup";
 import formStyles from '@/styles/Form.module.css'
 import { AppContext } from "../Context"
 
-function FolderForm() {
+function FolderForm({setToggle}) {
     const { folder, setFolder, updateId, setFolders, update, setUpdate } = useContext(AppContext)
 
-
     return (
-        <div className="w-full fixed top-18 md:top-19 flex gap-4  justify-center flex-wrap z-100 py-3 bg-slate-200 -ml-6">
             <form className={`flex gap-8 flex-wrap items-center`}>
                 <InputGroup
                     title=""
@@ -36,10 +34,11 @@ function FolderForm() {
                     <button onClick={(e) => {
                         addFolderToDB(e, folder, setFolder)
                         getFolders(setFolders)
+                        setToggle("")
                     }} className={`${formStyles.button_sm} ${formStyles.button_blue}`}>Add</button>
                 }
             </form>
-        </div>
+   
     )
 }
 

@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { getData } from "../firebase/Gallary/dbOperations"
-import GallaryCard from "./mini-components/GallaryCard"
-import GallaryForm from "./mini-components/GallaryForm"
+import { getData } from "../../firebase/Gallary/dbOperations"
+import GallaryCard from "./GallaryCard"
+import GallaryForm from "./GallaryForm"
 import styles from "@/styles/Gallary.module.css"
-import { AppContext } from './Context'
-import { getFolderSize } from '../firebase/Gallary/folderOperations'
-import { deleteAllImages } from '../firebase/Gallary/dbOperations'
+import { AppContext } from '../Context'
+import { getFolderSize } from '../..//firebase/Gallary/folderOperations'
+import { deleteAllImages } from '../../firebase/Gallary/dbOperations'
 
 function Gallary({ folderName, folderUrl }) {
     const { images, setImages, overlay,
@@ -19,7 +19,7 @@ function Gallary({ folderName, folderUrl }) {
     return (
         <>
             <div className={`${overlay ? styles.overlay : ''}`}></div>
-            <div className='px-4'>
+            <div className='px-4 mt-32 md:mt-40'>
                 <div className={`flex gap-5 items-center fixed
                 ${selectAll ? "w-full bg-slate-800 top-16 right-0 justify-center px-2 py-4 z-103" : "justify-end right-2 bottom-10 md:bottom-16 z-102"}`}>
                     <button type="checkbox"
@@ -46,7 +46,7 @@ function Gallary({ folderName, folderUrl }) {
                 </div>
 
                 <GallaryForm folderName={folderUrl} />
-                <section className={`my-10 flex gap-8 flex-wrap p-x-4 justify-center  `}>
+                <section className={`my-10 flex gap-8 flex-wrap px-4 justify-center  `}>
                     {images.length === 0 ? <h1 className="text-center"></h1> :
                         images.map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
                             return (
