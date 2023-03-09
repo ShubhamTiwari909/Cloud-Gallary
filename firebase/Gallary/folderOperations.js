@@ -18,7 +18,8 @@ export const addFolderToDB = (e, folderName, setFolderName) => {
         addDoc(databaseRef, {
             folderName: folderName,
             folderUrl: `${folderName}${randomNumber}`,
-            createdAt:date
+            createdAt: date,
+            color:"rgb(218, 220, 221)"
         }).then(() => {
             setFolderName("")
         }).catch((err) => {
@@ -32,6 +33,7 @@ export const getId = (id, setUpdateId, folderName, setFolder) => {
     setUpdateId(id)
     setFolder(folderName)
 }
+
 
 export const updateFolderToDB = (e, folderName, setFolderName, updateId) => {
     e.preventDefault();
@@ -50,6 +52,18 @@ export const updateFolderToDB = (e, folderName, setFolderName, updateId) => {
     }
 }
 
+export const updateFolderColor = (e, updateId,color,setFolders) => {
+    e.preventDefault(e)
+    const databaseRef = doc(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}/`, updateId)
+        updateDoc(databaseRef, {
+            color:color === "" ? "rgb(218, 220, 221)" : color
+        }).then(() => {
+            getFolders(setFolders)
+        }).catch((err) => {
+            console.error(err)
+        })
+}
+
 export const getFolders = async (setFolders) => {
     const databaseRef = collection(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}`)
     await getDocs(databaseRef)
@@ -61,12 +75,10 @@ export const getFolders = async (setFolders) => {
 }
 
 
-export const deleteFolder = (id, setFolders, folderUrl, images) => {
-    
+export const deleteFolderImages = (folderUrl, images) => {
     images.forEach(image => {
         const urlRef = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderUrl}/images`, image.id)
         deleteDoc(urlRef).then(() => {
-            console.log("Url Deleted", image.id)
         }).catch(err => {
             console.error(err)
         })
@@ -78,7 +90,6 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
         .then((res) => {
             res.items.forEach((itemRef) => {
                 deleteObject(itemRef).then(() => {
-                    console.log("Image Deleted", itemRef.size)
                 }).catch((error) => {
                     console.log("Uh-oh, an error occurred!")
                 });
@@ -87,6 +98,11 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
             // Uh-oh, an error occurred!
         });
 
+}
+
+export const deleteFolder = (id, setFolders, folderUrl, images) => {
+
+    deleteFolderImages(folderUrl, images)
     /* Deleting the folder from the database. */
     const fieldToDelete = doc(database, `/Gallary/FoldersName/${sessionStorage.getItem("uid")}`, id);
     deleteDoc(fieldToDelete, id)
@@ -98,7 +114,7 @@ export const deleteFolder = (id, setFolders, folderUrl, images) => {
 }
 
 export const getFolderSize = (images) => {
-    let sum =0
+    let sum = 0
     images.forEach(element => {
         sum += Number(element.size)
     });

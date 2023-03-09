@@ -24,14 +24,14 @@ function App({ Component, pageProps }) {
 
   //states
   const [tokenId, setTokenId] = useState(null);
-  
+
   // FOLDER
   const [folder, setFolder] = useState("");
   const [folders, setFolders] = useState([])
+  const [folderStorage, setFolderStorage] = useState(0)
   const [update, setUpdate] = useState(false)
   const [updateId, setUpdateId] = useState("")
-  const [folderStorage, setFolderStorage] = useState(0)
-  
+
   // GALLARY
   const [images, setImages] = useState([])
   const [overlay, setOverlay] = useState(false)
@@ -39,13 +39,13 @@ function App({ Component, pageProps }) {
   const [deleteAll, setDeleteAll] = useState([])
 
   // SEARCH
-  const [search,setSearch] = useState("")
+  const [search, setSearch] = useState("")
 
   return (
     <AppContext.Provider value={{
-      tokenId, setTokenId,images, setImages,folder, setFolder,folders, setFolders,
-      update, setUpdate,updateId, setUpdateId,folderStorage, setFolderStorage,
-      overlay, setOverlay,selectAll, setSelectAll,deleteAll, setDeleteAll,search,setSearch
+      tokenId, setTokenId, images, setImages, folder, setFolder, folders, setFolders,
+      update, setUpdate, updateId, setUpdateId, folderStorage, setFolderStorage,
+      overlay, setOverlay, selectAll, setSelectAll, deleteAll, setDeleteAll, search, setSearch
     }}>
       <div className='fixed top-0 z-99 w-full'>
         <Navbar tokenId={tokenId} />
@@ -61,38 +61,29 @@ export default Sentry.withProfiler(App)
 
 
 App.propTypes = {
+  // States
   tokenId: PropTypes.string,
-  setTokenId: PropTypes.func,
-  title: PropTypes.string,
-  setTitle: PropTypes.func,
-  task: PropTypes.string,
-  setTask: PropTypes.func,
-  priority: PropTypes.string,
-  setPriority: PropTypes.func,
-  deadline: PropTypes.string,
-  setDeadline: PropTypes.func,
-  completed: PropTypes.bool,
-  setCompleted: PropTypes.func,
-  url: PropTypes.object,
-  setUrl: PropTypes.func,
-  percent: PropTypes.number,
-  setPercent: PropTypes.func,
-  taskGroup: PropTypes.array,
-  setTaskGroup: PropTypes.func,
   update: PropTypes.bool,
-  setUpdate: PropTypes.func,
   updateId: PropTypes.string,
+  folder: PropTypes.string,
+  folders: PropTypes.array,
+  folderStorage: PropTypes.number,
+  images: PropTypes.array,
+  overlay: PropTypes.bool,
+  selectAll: PropTypes.bool,
+  deleteAll: PropTypes.array,
+  search:PropTypes.string,
+
+  // Setters for States
+  setTokenId: PropTypes.func,
+  setUpdate: PropTypes.func,
   setUpdateId: PropTypes.func,
-  search: PropTypes.string,
-  setSearch: PropTypes.string,
-  searchCompleted: PropTypes.string,
-  setSearchCompleted: PropTypes.func,
-  menu: PropTypes.bool,
-  setMenu: PropTypes.func,
-  getId: PropTypes.func,
-  getData: PropTypes.func,
-  addTask: PropTypes.func,
-  updateTask: PropTypes.func,
-  deleteTask: PropTypes.func,
-  getCompleted: PropTypes.func,
+  setFolder: PropTypes.func,
+  setFolderId: PropTypes.func,
+  setFolderStorage: PropTypes.func,
+  setImages: PropTypes.func,
+  setOverlay: PropTypes.func,
+  setSelectAll: PropTypes.func,
+  setDeleteAll: PropTypes.func,
+  setSearch:PropTypes.func,
 }

@@ -10,12 +10,14 @@ import { getStorageSize } from '../../firebase/Gallary/dbOperations'
 import { AppContext } from '../Context'
 import { searchFilter } from "../../methods/SearchFilter";
 import Search from "../mini-components/Search"
+import PropTypes from "prop-types";
+
 
 
 function FolderNavbar() {
     const { folders, setFolders, folderStorage, setFolderStorage, search } = useContext(AppContext)
-    const [toggle, setToggle] = useState("")
 
+    const [toggle, setToggle] = useState("")
     useEffect(() => {
         getFolders(setFolders)
         setTimeout(() => {
@@ -51,9 +53,9 @@ function FolderNavbar() {
                 {folders.length === 0 ? <h2 className="text-center text-3xl md:text-6xl lg:text-9xl">No Folders</h2> :
                     folders.filter((folders) => searchFilter(folders, search)
                     )
-                        .map(({ id, folderName, folderUrl, createdAt }) => {
+                        .map(({ id, folderName, folderUrl, createdAt,color }) => {
                             return (
-                                <li key={id} className={`${styles.folderLink} relative`}>
+                                <li key={id} className={`${styles.folderLink} relative`} style={{backgroundColor:color}}>
                                     <Link href={{
                                         pathname: `/folders/${folderUrl}`,
                                         query: {
@@ -74,6 +76,11 @@ function FolderNavbar() {
             </ul>
         </div>
     </>;
+}
+
+FolderNavbar.propTypes = {
+    toggle:PropTypes.string,
+    setToggle:PropTypes.func
 }
 
 export default FolderNavbar

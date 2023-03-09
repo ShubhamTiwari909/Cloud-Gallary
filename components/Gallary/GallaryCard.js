@@ -1,4 +1,4 @@
-import { useState,useContext } from "react"
+import { useState, useContext } from "react"
 import { MdDeleteSweep } from "react-icons/md"
 import { BiCloudDownload } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
@@ -17,18 +17,20 @@ import Details from "../mini-components/Details"
 import { saveAs } from 'file-saver';
 import Image from "next/image"
 import { AppContext } from "../Context"
+import PropTypes from "prop-types";
+
 
 function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, contentType }) {
-    const {setImages, setOverlay, selectAll, deleteAll, setDeleteAll} = useContext(AppContext)
+    const { setImages, setOverlay, selectAll, deleteAll, setDeleteAll } = useContext(AppContext)
     const [detailPopup, setDetailPopup] = useState(false)
     const [fullScreen, setFullScreen] = useState(false)
     const [urlCopiedText, setUrlCopiedText] = useState(false)
-    const [tick,setTick] = useState(false)
+    const [tick, setTick] = useState(false)
     return (
         <div className="relative p-3 border-2 border-purple-400 bg-slate-900 text-white rounded-xl flex flex-col justify-between min-h-200">
             <Image src={imageUrl}
                 alt="Gallary Image"
-                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-101 cursor-pointer` : ""}`}
+                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-104 cursor-pointer` : ""}`}
                 width={200}
                 height={200}
                 onClick={() => {
@@ -88,7 +90,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                         className={"appearance-none w-5 h-5 rounded-md ring-2 ring-red-400"}
                         type="checkbox"
                         onChange={(e) => {
-                            if(!selectAll){
+                            if (!selectAll) {
                                 e.target.checked = false;
                             }
                             if (e.target.checked) {
@@ -108,7 +110,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
             </div>
 
             <button
-                className={fullScreen ? "fixed z-101 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
+                className={fullScreen ? "fixed z-104 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
                 onClick={() => {
                     setFullScreen(false)
                     setOverlay(false)
@@ -117,4 +119,17 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
     )
 }
 
+GallaryCard.propTypes = {
+    detailPopup:PropTypes.bool,
+    setDetailPopup:PropTypes.func,
+
+    fullScreen:PropTypes.bool,
+    setFullScreen:PropTypes.func,
+
+    urlCopiedText:PropTypes.bool,
+    setUrlCopiedText:PropTypes.func,
+
+    tick:PropTypes.bool,
+    setTick:PropTypes.func
+}
 export default GallaryCard

@@ -4,7 +4,7 @@
 
     /* FULLSCREEN */
     .full_screen {
-        @apply fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 overflow-scroll w-fit h-fit md:h-screen;
+        @apply fixed top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4 overflow-scroll w-fit h-fit md:h-2/3;
     }
 
     .overlay {
@@ -20,7 +20,7 @@
     }
 
     .folderLink {
-        @apply px-4 py-3 rounded-md bg-peach-grey text-xl;
+        @apply px-4 py-3 rounded-md text-xl;
     }
 
 

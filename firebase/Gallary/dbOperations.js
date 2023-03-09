@@ -38,6 +38,7 @@ export const getData = async (setImages, folderName) => {
 }
 
 
+
 export const deleteImage = (id, setImages, filename, folderName) => {
     const fieldToDelete = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`, id)
     const storageRef = ref(storage, `/GlobalImages/${sessionStorage.getItem("uid")}/${folderName}/${filename}`);
@@ -80,9 +81,9 @@ export const getStorageSize = async (folders, setFolderStorage) => {
 }
 
 export const deleteAllImages = (allImages, setImages, folderName) => {
-
     allImages.forEach(image => {
         deleteImage(image.id,setImages,image.imageName,folderName)
     });
 }
+
 
