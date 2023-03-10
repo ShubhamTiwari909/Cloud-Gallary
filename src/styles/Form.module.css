@@ -7,7 +7,7 @@
 
     .input_md,
     .input_sm {
-        @apply border border-light-purple py-2 px-4 max-w-200 text-black rounded-3xl outline-none;
+        @apply border border-light-purple py-2 px-4 max-w-200 text-black rounded-3xl outline-none text-sm md:text-base;
     }
 
     .input_sm {
@@ -42,7 +42,6 @@
 
     }
 
-
     .select_md {
         @apply appearance-none border border-blue-200 rounded-xl text-black py-1 px-3 min-w-120
         appearance: none;
@@ -51,5 +50,35 @@
     .select_md:focus,
     .select_md:hover {
         @apply outline-none
+    }
+
+    .formBg{
+        height:100vh;
+        display: grid;
+        place-items: center;
+        background-image: url("../images/FormBg.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .blurBg {
+        position: relative; 
+        isolation: isolate;
+        padding: 2rem;
+        border: 1px solid #ffffff;
+        border-radius: 10px;
+    }
+    
+    .blurBg::before {    
+          content: "";
+          position: absolute;
+          background-color: rgb(47, 46, 123);
+          z-index: -1;
+          top: 0px;
+          right: 0px;
+          bottom: 0px;
+          left: 0px;
+          opacity: 0.60;
+          filter: blur(10px);
     }
 }

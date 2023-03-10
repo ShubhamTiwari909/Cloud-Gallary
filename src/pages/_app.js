@@ -45,7 +45,7 @@ function App({ Component, pageProps }) {
     <AppContext.Provider value={{
       tokenId, setTokenId, images, setImages, folder, setFolder, folders, setFolders,
       update, setUpdate, updateId, setUpdateId, folderStorage, setFolderStorage,
-      overlay, setOverlay, selectAll, setSelectAll, deleteAll, setDeleteAll, search, setSearch
+      overlay, setOverlay, selectAll, setSelectAll, deleteAll, setDeleteAll, search, setSearch,
     }}>
       <div className='fixed top-0 z-99 w-full'>
         <Navbar tokenId={tokenId} />

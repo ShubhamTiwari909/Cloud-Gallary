@@ -1,11 +1,12 @@
 import Head from "next/head"
-import { useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import Login from "../../components/Login"
+import { AppContext } from "../../components/Context"
 
 function Signin() {
     const router = useRouter()
-
+    const {setUid} = useContext(AppContext)
     useEffect(() => {
         let token = sessionStorage.getItem("Token")
         if (token) {

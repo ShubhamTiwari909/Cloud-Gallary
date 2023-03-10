@@ -2,7 +2,6 @@ import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebas
 import {auth} from "./firebaseConfig"
 // Registration
 const googleProvider = new GoogleAuthProvider();
-const githubProvider = new GithubAuthProvider();
 export const signupWithGoogle = (router) => {
     signInWithPopup(auth, googleProvider)
         .then(response => {

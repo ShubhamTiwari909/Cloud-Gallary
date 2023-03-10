@@ -12,7 +12,6 @@ function Navbar({ tokenId }) {
   //router
   const router = useRouter()
   const { setTokenId } = useContext(AppContext)
-
   return (
     <>
       {
@@ -25,6 +24,7 @@ function Navbar({ tokenId }) {
                 <button className={styles.buttonRed}
                   onClick={() => logout(router, setTokenId)}>Logout</button>
                 <Link href="/folders/navigation">Gallary</Link>
+                <Link href="/feedback">Feedback</Link>
               </>
             </nav>
           </div >
