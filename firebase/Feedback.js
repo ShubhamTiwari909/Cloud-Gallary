@@ -1,7 +1,7 @@
 import { addDoc, collection } from 'firebase/firestore'
 import { database } from "./firebaseConfig";
 
-export const addFeedbackToDB = (username, setUsername, email, setEmail, message, setMessage) => {
+export const addFeedbackToDB = (username, setUsername, email, setEmail, message, setMessage,issueLevel,setIssueLevel) => {
     let curr = new Date();
     curr.setDate(curr.getDate());
     let date = curr.toISOString();
@@ -12,11 +12,13 @@ export const addFeedbackToDB = (username, setUsername, email, setEmail, message,
         username: username,
         email: email,
         message: message,
-        date: date
+        date: date,
+        issueLevel:issueLevel
     }).then(() => {
         setUsername("");
         setEmail("");
         setMessage("");
+        setIssueLevel(1)
     }).catch((err) => {
         console.error(err)
     })
