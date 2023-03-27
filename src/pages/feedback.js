@@ -8,6 +8,28 @@ const Folder = () => {
     const [feedbackMessage, setFeedbackMessage] = useState("")
     const [issueLevel, setIssueLevel] = useState(1)
 
+    const levels = [
+        {
+            level: 1,
+            color: "bg-green-600"
+        },
+        {
+            level: 2,
+            color: "bg-green-400"
+        },
+        {
+            level: 3,
+            color: "bg-yellow-300"
+        },
+        {
+            level: 4,
+            color: "bg-orange-400"
+        },
+        {
+            level: 5,
+            color: "bg-red-600"
+        },
+    ]
     const submitFeedback = (e) => {
         e.preventDefault()
         if (username === "" || email === "" || feedbackMessage === "" || username.startsWith(" ")
@@ -15,7 +37,7 @@ const Folder = () => {
             alert("Please Fill All the Fields");
         }
         else {
-            addFeedbackToDB(username, setUsername, email, setEmail, feedbackMessage, setFeedbackMessage,issueLevel,setIssueLevel)
+            addFeedbackToDB(username, setUsername, email, setEmail, feedbackMessage, setFeedbackMessage, issueLevel, setIssueLevel)
         }
     }
 
@@ -68,31 +90,15 @@ const Folder = () => {
                     <div className="grid grid-cols-2 items-center">
                         <p className="text-white">Issue Level - </p>
                         <div className="grid grid-cols-5 gap-7 items-center text-center text-white">
-                            <span className={`inline-block w-6 h-6 rounded-full bg-green-600 
-                            ${issueLevel === 1 ? "ring-1 ring-white" : "" }`}
-                                onClick={() => {
-                                    setIssueLevel(1)
-                                    }}></span>
-                            <span className={`inline-block w-6 h-6 rounded-full bg-green-400 focus:ring-1 focus:ring-white
-                            ${issueLevel === 2 ? "ring-1 ring-white" : "" }`}
-                                onClick={() => {
-                                    setIssueLevel(2)
-                                    }}></span>
-                            <span className={`inline-block w-6 h-6 rounded-full bg-yellow-300 focus:ring-1 focus:ring-white
-                            ${issueLevel === 3 ? "ring-1 ring-white" : "" }`}
-                                onClick={() => {
-                                    setIssueLevel(3)
-                                    }}></span>
-                            <span className={`inline-block w-6 h-6 rounded-full bg-orange-400 focus:ring-1 focus:ring-white
-                            ${issueLevel === 4 ? "ring-1 ring-white" : "" }`}
-                                onClick={() => {
-                                    setIssueLevel(4)
-                                    }}></span>
-                            <span className={`inline-block w-6 h-6 rounded-full bg-red-600 focus:ring-1 focus:ring-white
-                            ${issueLevel === 5 ? "ring-1 ring-white" : "" }`}
-                                onClick={() => {
-                                    setIssueLevel(5)
-                                    }}></span>
+                            {levels.map(({ level, color }, index) => {
+                                return (
+                                    <span className={`inline-block w-6 h-6 rounded-full ${color}
+                                    ${issueLevel === level ? "ring-1 ring-white" : ""}`}
+                                        onClick={() => {
+                                            setIssueLevel(level)
+                                        }}></span>
+                                )
+                            })}
                         </div>
                     </div>
                     <button className="block border-none px-4 py-2 rounded-xl bg-white text-slate-700"

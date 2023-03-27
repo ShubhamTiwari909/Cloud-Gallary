@@ -69,6 +69,7 @@ function FolderNavbar() {
                                         folderName={folderName}
                                         folderUrl={folderUrl}
                                         createdAt={createdAt}
+                                        setToggle={setToggle}
                                     />
                                 </li>
                             )

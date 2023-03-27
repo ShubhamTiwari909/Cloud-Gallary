@@ -3,7 +3,7 @@ import { RxCross1 } from "react-icons/rx"
 function Details({ details, detailPopup, setDetailPopup, setOverlay }) {
 
     return (
-        <div className={`${detailPopup ? "" : "hidden"} w-72 md:w-96 fixed absolute-center z-103 mt-2 bg-white p-4 rounded-lg`
+        <div className={`${detailPopup ? "" : "hidden"} w-72 md:w-96 fixed absolute-center z-104 mt-2 bg-white p-4 rounded-lg`
         }>
             {details.map((detail,index) => {
                 return (

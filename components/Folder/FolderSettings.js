@@ -1,6 +1,10 @@
 import { useState, useContext } from 'react'
 import { BiDotsVerticalRounded } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
+import {MdDriveFileRenameOutline} from "react-icons/md"
+import {FcViewDetails,FcEmptyTrash,FcDeleteDatabase} from "react-icons/fc"
+import {VscSymbolColor} from "react-icons/vsc"
+import { toast } from 'react-toastify';
 import { getId, deleteFolder, deleteFolderImages, updateFolderColor } from "../../firebase/Gallary/folderOperations"
 import { AppContext } from '../Context'
 import styles from "@/styles/Gallary.module.css"
@@ -8,7 +12,7 @@ import Details from '../mini-components/Details'
 import PropTypes from "prop-types";
 
 
-function FolderSettings({ id, folderName, folderUrl, createdAt }) {
+function FolderSettings({ id, folderName, folderUrl, createdAt,setToggle }) {
     const { images, setUpdate, updateId,setUpdateId, setFolder, setFolders, overlay, setOverlay } = useContext(AppContext)
 
     const [settings, setSettings] = useState(false)
@@ -25,35 +29,38 @@ function FolderSettings({ id, folderName, folderUrl, createdAt }) {
                 <button className="absolute right-1 top-4"
                     onClick={() => setSettings(!settings)}
                 ><BiDotsVerticalRounded /></button>
-                <div className={`flex flex-col items-start gap-2 absolute z-50 right-1 top-2 px-4 py-2 rounded-lg bg-white
+                <div className={`flex flex-col items-start gap-4 text-slate-800 font-semibold absolute z-50 right-1 top-2 px-4 py-2 rounded-lg bg-white
                                 ${settings ? "" : "hidden"}`}
                     onMouseLeave={() => setSettings(false)}>
-                    <button className='text-sm' onClick={() => {
+                    <button className='text-sm flex gap-2 items-center' onClick={() => {
                         getId(id, setUpdateId, folderName, setFolder)
                         setUpdate(true)
                         setSettings(false)
-                    }}>Rename</button>
-                    <button className='text-sm' onClick={() => {
+                        setToggle("ADD")
+                    }}><MdDriveFileRenameOutline /> Rename</button>
+                    <button className='text-sm flex gap-2 items-center' onClick={() => {
                         setDetailPopup(true)
                         setOverlay(true)
                     }}>
-                        Details
+                       <FcViewDetails /> Details
                     </button>
-                    <button className='text-sm' onClick={(e) => {
+                    <button className='text-sm flex gap-2 items-center' onClick={(e) => {
                         getId(id, setUpdateId, folderName, setFolder)
                         setColorsPopup(true);
                         setOverlay(true)
                     }}>
-                        Color
+                        <VscSymbolColor /> Color
                     </button>
-                    <button className='text-sm text-red-600' onClick={() => {
+                    <button className='text-sm flex gap-2 items-center' onClick={() => {
                         deleteFolderImages(folderUrl, images)
                         setSettings(false)
-                    }}>Empty Folder</button>
-                    <button className='text-sm text-red-600' onClick={() => {
+                        toast.error('Folder is emptied')
+                    }}><FcEmptyTrash /> Empty Folder</button>
+                    <button className='text-sm flex gap-2 items-center' onClick={() => {
                         deleteFolder(id, setFolders, folderUrl, images)
                         setSettings(false)
-                    }}>Delete</button>
+                        toast.error('Folder is deleted')
+                    }}><FcDeleteDatabase /> Delete</button>
                 </div>
             </div>
 
