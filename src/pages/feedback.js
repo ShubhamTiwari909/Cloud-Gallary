@@ -92,7 +92,7 @@ const Folder = () => {
                         <div className="grid grid-cols-5 gap-7 items-center text-center text-white">
                             {levels.map(({ level, color }, index) => {
                                 return (
-                                    <span className={`inline-block w-6 h-6 rounded-full ${color}
+                                    <span key={index} className={`inline-block w-6 h-6 rounded-full ${color}
                                     ${issueLevel === level ? "ring-1 ring-white" : ""}`}
                                         onClick={() => {
                                             setIssueLevel(level)
