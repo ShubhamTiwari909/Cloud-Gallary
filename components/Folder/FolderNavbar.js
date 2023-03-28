@@ -25,30 +25,6 @@ function FolderNavbar() {
         }, 1000);
     }, [folderStorage])
 
-    const foldersList = useMemo(() => 
-    folders
-    .filter((folders) => searchFilter(folders, search))
-    .map(({ id, folderName, folderUrl, createdAt, color }) => {
-        return (
-            <li key={id} className={`${styles.folderLink} relative`} style={{ backgroundColor: color }}>
-                <Link href={{
-                    pathname: `/folders/${folderUrl}`,
-                    query: {
-                        folderName: folderName
-                    }
-                }} className={`text-black flex gap-4 items-center`}>
-                    <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
-                </Link>
-                <FolderSettings
-                    id={id}
-                    folderName={folderName}
-                    folderUrl={folderUrl}
-                    createdAt={createdAt}
-                    setToggle={setToggle}
-                />
-            </li>
-        )
-    }), [folders])
 
     return <>
         <div className={`${styles.foldersNav}`}>
@@ -74,9 +50,31 @@ function FolderNavbar() {
                     {toggle === "SEARCH" ? <Search /> : ""}
                 </div>
             </div>
-            <ul className={styles.foldersList}>
+            <ul className={`${styles.foldersList} ${toggle ? "mt-16 md:mt-24" : "mt-5 md:mt-10"}`}>
                 {folders.length === 0 ? <h2 className="text-center text-3xl md:text-6xl lg:text-9xl">No Folders</h2> :
-                    foldersList
+                      folders
+                      .filter((folders) => searchFilter(folders, search))
+                      .map(({ id, folderName, folderUrl, createdAt, color }) => {
+                          return (
+                              <li key={id} className={`${styles.folderLink} relative`} style={{ backgroundColor: color }}>
+                                  <Link href={{
+                                      pathname: `/folders/${folderUrl}`,
+                                      query: {
+                                          folderName: folderName
+                                      }
+                                  }} className={`text-black flex gap-4 items-center`}>
+                                      <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
+                                  </Link>
+                                  <FolderSettings
+                                      id={id}
+                                      folderName={folderName}
+                                      folderUrl={folderUrl}
+                                      createdAt={createdAt}
+                                      setToggle={setToggle}
+                                  />
+                              </li>
+                          )
+                      })
                 }
             </ul>
         </div>

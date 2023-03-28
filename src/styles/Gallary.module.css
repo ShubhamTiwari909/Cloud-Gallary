@@ -16,7 +16,7 @@
     }
 
     .foldersList {
-        @apply mt-12 flex flex-wrap gap-4;
+        @apply flex flex-wrap gap-4;
     }
 
     .folderLink {
