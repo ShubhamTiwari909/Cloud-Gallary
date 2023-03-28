@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useMemo, useEffect, useContext } from 'react'
 import { getData } from "../../firebase/Gallary/dbOperations"
 import GallaryCard from "./GallaryCard"
 import GallaryForm from "./GallaryForm"
@@ -15,6 +15,22 @@ function Gallary({ folderName, folderUrl }) {
         // Find all the prefixes and items.
         getData(setImages, folderUrl)
     }, [folderUrl])
+
+    const imagesList =  useMemo(() => 
+        images.map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
+            return (
+                <GallaryCard
+                    key={id}
+                    id={id}
+                    imageUrl={imageUrl}
+                    imageName={imageName}
+                    createdAt={createdAt}
+                    size={size}
+                    contentType={contentType}
+                    folderUrl={folderUrl}
+                />
+            )
+        }), [images])
 
     return (
         <>
@@ -48,20 +64,8 @@ function Gallary({ folderName, folderUrl }) {
                 <GallaryForm folderName={folderUrl} />
                 <section className={`my-10 flex gap-8 flex-wrap px-4 justify-center  `}>
                     {images.length === 0 ? <h1 className="text-center"></h1> :
-                        images.map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
-                            return (
-                                <GallaryCard
-                                    key={id}
-                                    id={id}
-                                    imageUrl={imageUrl}
-                                    imageName={imageName}
-                                    createdAt={createdAt}
-                                    size={size}
-                                    contentType={contentType}
-                                    folderUrl={folderUrl}
-                                  />
-                            )
-                        })}
+                       imagesList
+                    }
                 </section>
             </div>
         </>

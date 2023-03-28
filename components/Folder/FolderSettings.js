@@ -1,9 +1,9 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useMemo } from 'react'
 import { BiDotsVerticalRounded } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
-import {MdDriveFileRenameOutline} from "react-icons/md"
-import {FcViewDetails,FcEmptyTrash,FcDeleteDatabase} from "react-icons/fc"
-import {VscSymbolColor} from "react-icons/vsc"
+import { MdDriveFileRenameOutline } from "react-icons/md"
+import { FcViewDetails, FcEmptyTrash, FcDeleteDatabase } from "react-icons/fc"
+import { VscSymbolColor } from "react-icons/vsc"
 import { toast } from 'react-toastify';
 import { getId, deleteFolder, deleteFolderImages, updateFolderColor } from "../../firebase/Gallary/folderOperations"
 import { AppContext } from '../Context'
@@ -12,16 +12,28 @@ import Details from '../mini-components/Details'
 import PropTypes from "prop-types";
 
 
-function FolderSettings({ id, folderName, folderUrl, createdAt,setToggle }) {
-    const { images, setUpdate, updateId,setUpdateId, setFolder, setFolders, overlay, setOverlay } = useContext(AppContext)
+function FolderSettings({ id, folderName, folderUrl, createdAt, setToggle }) {
+    const { images, setUpdate, updateId, setUpdateId, setFolder, setFolders, overlay, setOverlay } = useContext(AppContext)
 
     const [settings, setSettings] = useState(false)
     const [detailPopup, setDetailPopup] = useState(false)
     const [colorsPopup, setColorsPopup] = useState(false)
 
-    const colors = ["#FFACAC","#FFBFA9","#FFEBB4","#3A98B9","#F7C8E0","#B9F3E4","#E3DFFD","#B9F3FC",
-                   "#FFCEFE","#E3ACF9","#D7E9B9","#9EA1D4","#CEEDC7","#ADA2FF","#F8F988","#DEBACE"]
+    const colors = ["#FFACAC", "#FFBFA9", "#FFEBB4", "#3A98B9", "#F7C8E0", "#B9F3E4", "#E3DFFD", "#B9F3FC",
+        "#FFCEFE", "#E3ACF9", "#D7E9B9", "#9EA1D4", "#CEEDC7", "#ADA2FF", "#F8F988", "#DEBACE"]
 
+
+    const colorsList = useMemo(() =>
+        colors.map((color, index) => {
+            return (
+                <button key={index} className="w-6 h-6 md:h-10 md:w-10 rounded-full border border-slate-700" style={{ backgroundColor: color }}
+                    onClick={(e) => {
+                        updateFolderColor(e, updateId, color, setFolders)
+                        setOverlay(false)
+                        setColorsPopup(false)
+                    }}></button>
+            )
+        }), [colors])
     return (
         <>
             <div className={`${overlay ? styles.overlay : ''}`}></div>
@@ -42,7 +54,7 @@ function FolderSettings({ id, folderName, folderUrl, createdAt,setToggle }) {
                         setDetailPopup(true)
                         setOverlay(true)
                     }}>
-                       <FcViewDetails /> Details
+                        <FcViewDetails /> Details
                     </button>
                     <button className='text-sm flex gap-2 items-center' onClick={(e) => {
                         getId(id, setUpdateId, folderName, setFolder)
@@ -68,16 +80,7 @@ function FolderSettings({ id, folderName, folderUrl, createdAt,setToggle }) {
             <div className={`${colorsPopup ? "" : "hidden"} w-72 md:w-96 fixed absolute-center z-104 mt-2 bg-white p-5 rounded-lg`
             }>
                 <div className="flex flex-wrap gap-3">
-                    {colors.map((color,index) => {
-                        return (
-                            <button key={index} className="w-6 h-6 md:h-10 md:w-10 rounded-full border border-slate-700" style={{ backgroundColor: color }}
-                            onClick={(e) => {
-                                updateFolderColor(e,updateId,color,setFolders)
-                                setOverlay(false)
-                                setColorsPopup(false)
-                            }}></button>
-                        )
-                    })}
+                    {colorsList}
                 </div>
                 <button className='text-sm absolute top-2 right-2' onClick={() => {
                     setOverlay(false)
@@ -91,7 +94,7 @@ function FolderSettings({ id, folderName, folderUrl, createdAt,setToggle }) {
             <Details
                 details={[
                     { name: "Name", value: folderName },
-                    { name: "CreatedAt", value: createdAt },
+                    { name: "Created-at", value: createdAt },
                     { name: "ID", value: id }
                 ]}
                 detailPopup={detailPopup}

@@ -57,7 +57,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                 <Details
                     details={[
                         { name: "Name", value: imageName },
-                        { name: "CreatedAt", value: createdAt },
+                        { name: "Created-at", value: createdAt },
                         { name: "Size", value: (Number(size) / 1024).toFixed(3) + "mb" },
                         { name: "Content-Type", value: contentType },
                         { name: "ID", value: id },

@@ -8,7 +8,7 @@ function FolderForm({ setToggle }) {
     const { folder, setFolder, updateId, setFolders, update, setUpdate } = useContext(AppContext)
 
     return (
-        <form className={`flex gap-8 flex-wrap items-center`}>
+        <form className={`flex gap-8 flex-wrap items-center justify-center`}>
             <InputGroup
                 title=""
                 type="text"

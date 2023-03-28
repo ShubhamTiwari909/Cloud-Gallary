@@ -6,7 +6,6 @@ import { AppContext } from "../../components/Context"
 
 function Signin() {
     const router = useRouter()
-    const {setUid} = useContext(AppContext)
     useEffect(() => {
         let token = sessionStorage.getItem("Token")
         if (token) {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo } from "react";
 import Link from "next/link";
 import styles from '@/styles/Gallary.module.css'
 import { getFolders } from "../../firebase/Gallary/folderOperations";
@@ -24,6 +24,31 @@ function FolderNavbar() {
             getStorageSize(folders, setFolderStorage)
         }, 1000);
     }, [folderStorage])
+
+    const foldersList = useMemo(() => 
+    folders
+    .filter((folders) => searchFilter(folders, search))
+    .map(({ id, folderName, folderUrl, createdAt, color }) => {
+        return (
+            <li key={id} className={`${styles.folderLink} relative`} style={{ backgroundColor: color }}>
+                <Link href={{
+                    pathname: `/folders/${folderUrl}`,
+                    query: {
+                        folderName: folderName
+                    }
+                }} className={`text-black flex gap-4 items-center`}>
+                    <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
+                </Link>
+                <FolderSettings
+                    id={id}
+                    folderName={folderName}
+                    folderUrl={folderUrl}
+                    createdAt={createdAt}
+                    setToggle={setToggle}
+                />
+            </li>
+        )
+    }), [folders])
 
     return <>
         <div className={`${styles.foldersNav}`}>
@@ -51,37 +76,16 @@ function FolderNavbar() {
             </div>
             <ul className={styles.foldersList}>
                 {folders.length === 0 ? <h2 className="text-center text-3xl md:text-6xl lg:text-9xl">No Folders</h2> :
-                    folders.filter((folders) => searchFilter(folders, search)
-                    )
-                        .map(({ id, folderName, folderUrl, createdAt,color }) => {
-                            return (
-                                <li key={id} className={`${styles.folderLink} relative`} style={{backgroundColor:color}}>
-                                    <Link href={{
-                                        pathname: `/folders/${folderUrl}`,
-                                        query: {
-                                            folderName: folderName
-                                        }
-                                    }} className={`text-black flex gap-4 items-center`}>
-                                        <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
-                                    </Link>
-                                    <FolderSettings
-                                        id={id}
-                                        folderName={folderName}
-                                        folderUrl={folderUrl}
-                                        createdAt={createdAt}
-                                        setToggle={setToggle}
-                                    />
-                                </li>
-                            )
-                        })}
+                    foldersList
+                }
             </ul>
         </div>
     </>;
 }
 
 FolderNavbar.propTypes = {
-    toggle:PropTypes.string,
-    setToggle:PropTypes.func
+    toggle: PropTypes.string,
+    setToggle: PropTypes.func
 }
 
 export default FolderNavbar
