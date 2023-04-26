@@ -33,11 +33,11 @@ function Gallary({ folderName, folderUrl }) {
         }), [images])
 
     return (
-        <>
+        <div className='gallary'>
             <div className={`${overlay ? styles.overlay : ''}`}></div>
-            <div className='px-4 mt-32 md:mt-40'>
+            <div className='px-4 mt-24 md:mt-32 pt-2 pb-10'>
                 <div className={`flex gap-5 items-center fixed
-                ${selectAll ? "w-full bg-slate-800 top-16 right-0 justify-center px-2 py-4 z-103" : "justify-end right-2 bottom-10 md:bottom-16 z-102"}`}>
+                ${selectAll ? "w-full bg-slate-800 top-16 right-0 justify-center px-2 py-6 z-103" : "justify-end right-2 bottom-10 md:bottom-16 z-102"}`}>
                     <button type="checkbox"
                         className='px-3 py-2 bg-purple-700 text-slate-100 rounded-xl text-xs'
                         onClick={(e) => {
@@ -52,7 +52,7 @@ function Gallary({ folderName, folderUrl }) {
                         }}>Delete Selected Images</button>
                 </div>
 
-                <h1 className='text-center text-2xl font-bold text-slate-700'>{folderName === "default" ? "Default" : folderName}</h1>
+                <h1 className='text-center text-2xl font-bold text-slate-100 mt-4'>{folderName === "default" ? "Default" : folderName}</h1>
 
                 <div className='flex justify-center fixed bottom-0 py-1.5 z-100 w-full bg-slate-700 text-white -ml-4
                 md:bottom-3 md:right-3 md:w-fit md:px-4 md:py-2 md:rounded-lg'>
@@ -68,7 +68,7 @@ function Gallary({ folderName, folderUrl }) {
                     }
                 </section>
             </div>
-        </>
+        </div>
     )
 }
 

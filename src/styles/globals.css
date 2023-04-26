@@ -28,11 +28,21 @@
     @apply rounded-xl p-4 bg-purple-900 border border-purple-600 text-white;
 }
 
+@layer components {
+    .folder--nav {
+        @apply mt-24 text-slate-100;
+        background-image: linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.4)), url("../images/folder--navbar-bg1.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+        max-height: 100vh;
+    }
 
-
-
-
-
-
-
-
+    .gallary{
+        @apply min-h-screen;
+        background-image: linear-gradient(rgb(0,0,0,0.3),rgb(0,0,0,0.4)), url("../images/gallary-bg.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top;
+    }
+}

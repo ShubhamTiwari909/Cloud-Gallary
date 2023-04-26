@@ -22,7 +22,7 @@ const Folder = () => {
                 <title>Folder Navigation</title>
             </Head>
             <ToastContainer />
-            <div className="mt-24">
+            <div className="folder--nav">
                 <FolderNavbar />
             </div>
         </>

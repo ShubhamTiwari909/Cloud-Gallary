@@ -36,14 +36,14 @@ function FolderNavbar() {
                     Get Storage: {folderStorage} GB
                 </button>
             </div>
-            <div className="w-full fixed top-18 md:top-19 flex flex-col z-100 py-3 bg-slate-200 -ml-6">
+            <div className="w-full fixed top-18 md:top-18 flex flex-col z-100 py-3 bg-slate-800 -ml-6">
                 <div className="flex justify-around">
                     <button onClick={() => {
                         toggle === "" || toggle === "SEARCH" ? setToggle("ADD") : setToggle("");
-                    }}><AiOutlineFolderAdd className="text-2xl md:text-4xl" color="black" /></button>
+                    }}><AiOutlineFolderAdd className="text-2xl md:text-4xl" color="violet" /></button>
                     <button onClick={() => {
                         toggle === "" || toggle === "ADD" ? setToggle("SEARCH") : setToggle("")
-                    }}><CgSearchLoading className="text-2xl md:text-4xl" color="black" /></button>
+                    }}><CgSearchLoading className="text-2xl md:text-4xl" color="violet" /></button>
                 </div>
                 <div className={`flex justify-center ${toggle === "ADD" || toggle === "SEARCH" ? "mt-3" : ""}`}>
                     {toggle === "ADD" ? <FolderForm setToggle={setToggle} /> : ""}
@@ -63,7 +63,7 @@ function FolderNavbar() {
                                           folderName: folderName
                                       }
                                   }} className={`text-black flex gap-4 items-center`}>
-                                      <AiTwotoneFolderOpen color="black" size="20px" />  {folderName.slice(0, 10)}
+                                      <AiTwotoneFolderOpen color="rgb(50,10,100,0.9)" size="20px" />  {folderName.slice(0, 10)}
                                   </Link>
                                   <FolderSettings
                                       id={id}

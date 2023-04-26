@@ -1,8 +1,7 @@
 import Head from "next/head"
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import { useRouter } from "next/router"
 import Login from "../../components/Login"
-import { AppContext } from "../../components/Context"
 
 function Signin() {
     const router = useRouter()
@@ -14,12 +13,12 @@ function Signin() {
     }, [])
 
     return (
-        <>
-        <Head>
-            <title>Login | W-DRIVE</title>
-        </Head>
+        <div>
+            <Head>
+                <title>Login | W-DRIVE</title>
+            </Head>
             <Login router={router} />
-        </>
+        </div>
     )
 }
 

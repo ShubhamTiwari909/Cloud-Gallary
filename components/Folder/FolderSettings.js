@@ -40,7 +40,7 @@ function FolderSettings({ id, folderName, folderUrl, createdAt, setToggle }) {
             <div onMouseLeave={() => setSettings(false)}>
                 <button className="absolute right-1 top-4"
                     onClick={() => setSettings(!settings)}
-                ><BiDotsVerticalRounded /></button>
+                ><BiDotsVerticalRounded color='black' /></button>
                 <div className={`flex flex-col items-start gap-4 text-slate-800 font-semibold absolute z-50 right-1 top-2 px-4 py-2 rounded-lg bg-white
                                 ${settings ? "" : "hidden"}`}
                     onMouseLeave={() => setSettings(false)}>

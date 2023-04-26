@@ -30,7 +30,7 @@ function GallaryForm({ folderName }) {
     return (
         <>
             <p className={successUpload ? "fixed top-0 -ml-4 w-full text-center py-3 bg-green-500 text-white" : "hidden"}>Files Uploaded Successfully</p>
-            <div className="w-full fixed top-18 md:top-19 flex gap-4 justify-end md:justify-center flex-wrap z-102 py-2.5 md:py-4 px-2 bg-slate-200 -ml-4">
+            <div className="w-full fixed top-18 md:top-18 flex gap-4 justify-end md:justify-center flex-wrap z-102 py-2.5 md:py-4 px-2 bg-slate-800 -ml-4">
                 <Link href="/folders/navigation"
                     className='fixed left-1.5 top-19 md:top-24 z-102 text-slate-100 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-600 text-sm'>
                     <RxDoubleArrowLeft size="1rem" />Folders</Link>
