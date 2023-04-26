@@ -1,10 +1,5 @@
 import storage from "../firebaseConfig"
-import {
-    ref,
-    uploadBytesResumable,
-    getDownloadURL,
-    getMetadata
-} from "firebase/storage";
+import {ref,uploadBytesResumable,getDownloadURL,getMetadata} from "firebase/storage";
 
 export function handleUpload(e, targetFiles, folderName, setUrl, setSuccess) {
     e.preventDefault();
