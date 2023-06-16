@@ -1,4 +1,7 @@
 import '@/styles/globals.css'
+import '@/styles/button.css'
+import '@/styles/card.css'
+import '@/styles/form.css'
 import Layout from '../../components/Layout'
 import { useState } from 'react';
 import { AppContext } from "../../components/Context"
@@ -47,7 +50,7 @@ function App({ Component, pageProps }) {
       update, setUpdate, updateId, setUpdateId, folderStorage, setFolderStorage,
       overlay, setOverlay, selectAll, setSelectAll, deleteAll, setDeleteAll, search, setSearch,
     }}>
-      <div className='fixed top-0 z-99 w-full'>
+      <div className='fixed top-0 z-105 w-full'>
         <Navbar tokenId={tokenId} />
       </div>
       <Layout>

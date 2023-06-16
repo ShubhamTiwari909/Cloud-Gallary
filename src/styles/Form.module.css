@@ -20,7 +20,7 @@
     }
 
     .file_label {
-        @apply border border-light-purple px-2 py-1.5 rounded-md cursor-pointer text-sm md:text-xl text-white;
+        @apply border border-white bg-black px-2 py-1.5 rounded-md cursor-pointer text-sm md:text-xl text-white;
     }
 
 
@@ -53,10 +53,10 @@
     }
 
     .formBg{
-        height:100vh;
+        height:100%;
         display: grid;
         place-items: center;
-        background-image: url("../images/FormBg.png");
+        background-image: url("../images/FormBg.jpg");
         background-size: cover;
         background-repeat: no-repeat;
     }

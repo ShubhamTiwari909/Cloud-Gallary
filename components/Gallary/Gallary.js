@@ -7,6 +7,8 @@ import { AppContext } from '../Context'
 import { getFolderSize } from '../..//firebase/Gallary/folderOperations'
 import { deleteAllImages } from '../../firebase/Gallary/dbOperations'
 
+  
+
 function Gallary({ folderName, folderUrl }) {
     const { images, setImages, overlay,
         selectAll, setSelectAll,
@@ -52,7 +54,7 @@ function Gallary({ folderName, folderUrl }) {
                         }}>Delete Selected Images</button>
                 </div>
 
-                <h1 className='text-center text-2xl font-bold text-slate-100 mt-4'>{folderName === "default" ? "Default" : folderName}</h1>
+                <h1 className='text-center text-2xl font-bold text-slate-100 mt-6'>{folderName === "default" ? "Default" : folderName}</h1>
 
                 <div className='flex justify-center fixed bottom-0 py-1.5 z-100 w-full bg-slate-700 text-white -ml-4
                 md:bottom-3 md:right-3 md:w-fit md:px-4 md:py-2 md:rounded-lg'>
