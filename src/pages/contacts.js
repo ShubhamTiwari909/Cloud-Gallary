@@ -1,4 +1,4 @@
-import Contacts from "@/Contacts"
+import Contacts from "../../components/Contacts"
 
 function contacts() {
   return (
