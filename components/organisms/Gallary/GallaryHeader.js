@@ -9,7 +9,7 @@ function GallaryHeader({folderUrl}) {
         deleteAll, setDeleteAll } = useContext(AppContext)
   return (
     <div className={`flex gap-5 items-center fixed
-    ${selectAll ? "w-full bg-slate-800 top-16 right-0 justify-center px-2 py-6 z-103" : "justify-end right-2 bottom-10 md:bottom-16 z-102"}`}>
+    ${selectAll ? "w-full bg-slate-800 top-16 md:top-20 right-0 justify-center px-2 py-6 z-103" : "justify-end right-2 bottom-10 md:bottom-16 z-102"}`}>
         <Button type="checkbox"
             className='px-3 py-2 bg-purple-700 text-slate-100 rounded-xl text-xs'
             onClick={(e) => {
