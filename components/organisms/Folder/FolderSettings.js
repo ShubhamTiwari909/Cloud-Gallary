@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 import Button from '@/components/atoms/Button'
 
 
-function FolderSettings({ id, folderName, folderUrl, createdAt, setToggle }) {
+const FolderSettings = ({ id, folderName, folderUrl, createdAt, setToggle }) => {
     const { images, setUpdate, updateId, setUpdateId, setFolder, setFolders, overlay, setOverlay } = useContext(AppContext)
 
     const [settings, setSettings] = useState(false)

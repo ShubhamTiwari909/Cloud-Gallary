@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { forwardRef } from "react";
 
-const Button = forwardRef(
-  (
+const Button = (
     {
       href,
       className,
@@ -22,7 +20,6 @@ const Button = forwardRef(
       </Link>
     );
   }
-);
 
 Button.defaultProps = {
   href: "#",
