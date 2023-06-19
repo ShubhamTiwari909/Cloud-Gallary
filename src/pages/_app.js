@@ -6,9 +6,10 @@ import Layout from '../../components/Layout'
 import { useState } from 'react';
 import { AppContext } from "../../components/Context"
 import PropTypes from "prop-types";
-import Navbar from '../../components/Navbar'
+import Navbar from '@/components/organisms/common/Navbar'
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
+import Footer from '@/components/organisms/common/Footer'
 
 
 
@@ -50,12 +51,15 @@ function App({ Component, pageProps }) {
       update, setUpdate, updateId, setUpdateId, folderStorage, setFolderStorage,
       overlay, setOverlay, selectAll, setSelectAll, deleteAll, setDeleteAll, search, setSearch,
     }}>
-      <div className='fixed top-0 z-105 w-full'>
+      <header className='fixed top-0 z-105 w-full'>
         <Navbar tokenId={tokenId} />
-      </div>
+      </header>
       <Layout>
         <Component {...pageProps} />
       </Layout>
+      <footer>
+        <Footer />
+      </footer>
     </AppContext.Provider>
   )
 }

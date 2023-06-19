@@ -4,9 +4,7 @@ function Layout({ children }) {
             <main>
                 {children}
             </main>
-
         </>
-
     )
 }
 

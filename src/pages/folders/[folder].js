@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { useRouter } from 'next/router'
-import Gallary from "../../../components/Gallary/Gallary"
+import Gallary from "@/components/organisms/Gallary/Gallary"
 
 const Folder = () => {
     const router = useRouter()

@@ -42,6 +42,7 @@ export const getData = async (setImages, folderName) => {
 export const deleteImage = (id, setImages, filename, folderName) => {
     const fieldToDelete = doc(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`, id)
     const storageRef = ref(storage, `/GlobalImages/${sessionStorage.getItem("uid")}/${folderName}/${filename}`);
+
     // Delete the file
     deleteObject(storageRef).then(() => {
     }).catch((error) => {
@@ -87,3 +88,14 @@ export const deleteAllImages = (allImages, setImages, folderName) => {
 }
 
 
+export const deleteAllImagesFromDB = async (folderName) => {
+    const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
+    await getDocs(databaseRef)
+        .then(response => {
+            console.log(response.docs.map(data => {
+                return { ...data.data(), id: data.id }
+            }))
+        }).catch(err => {
+            console.error(err)
+        })
+}

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import { useEffect, useContext } from 'react'
-import FolderNavbar from '../../../components/Folder/FolderNavbar'
+import Folders from '../../../components/organisms/Folder/Folders'
 import { AppContext } from '../../../components/Context'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -23,7 +23,7 @@ const Folder = () => {
             </Head>
             <ToastContainer />
             <div className="folder--nav">
-                <FolderNavbar />
+                <Folders />
             </div>
         </>
     )

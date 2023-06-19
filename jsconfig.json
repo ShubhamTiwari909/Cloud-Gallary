@@ -2,7 +2,18 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/components/*": ["components/*"],
+      "@/firebase/*": ["firebase/*"],
+      "@/methods/*": ["methods/*"],
+      "@/molecules/*": ["components/molecules/*"],
+      "@/organisms/*": ["components/organisms/*"],
+      "@/Folder/*": ["components/organisms/Folder/*"],
+      "@/Gallary/*": ["components/organisms/Gallary/*"],
+      "@/src*": ["src/*"],
+      "@/styles/*": ["src/styles/*"],
+      "@/images/*": ["src/image/*"],
+
+    },
+    "jsx": "react"
   }
 }

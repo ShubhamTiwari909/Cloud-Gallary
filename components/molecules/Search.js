@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import InputGroup from './InputGroup'
+import InputGroup from '../atoms/InputGroup'
 import styles from '@/styles/Form.module.css'
 import { AppContext } from '../Context'
 function Search() {
@@ -7,13 +7,13 @@ function Search() {
     return (
         <form>
             <InputGroup
-                title="Search"
                 type="text"
-                name="search"
-                placeholder="Search"
                 className={styles.input_md}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
+                title="Search"
+                name="search"
+                placeholder="Search"
             />
         </form>
 

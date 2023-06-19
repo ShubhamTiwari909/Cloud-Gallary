@@ -2,9 +2,9 @@ import { useState, useContext } from "react"
 import { MdDeleteSweep } from "react-icons/md"
 import { BiCloudDownload } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
-import { deleteImage } from "../../firebase/Gallary/dbOperations"
+import { deleteImage } from "../../../firebase/Gallary/dbOperations"
 import styles from '@/styles/Gallary.module.css'
-import CopyContent from "../../methods/CopyContent";
+import CopyContent from "@/methods/CopyContent";
 import { FaCopy } from "react-icons/fa"
 import { FcViewDetails } from "react-icons/fc"
 import {
@@ -13,11 +13,12 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from "react-share"
-import Details from "../mini-components/Details"
+import Details from "@/molecules/Details"
 import { saveAs } from 'file-saver';
 import Image from "next/image"
-import { AppContext } from "../Context"
+import { AppContext } from "../../Context"
 import PropTypes from "prop-types";
+import Button from "@/components/atoms/Button"
 
 
 function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, contentType }) {
@@ -30,7 +31,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
         <div className="relative p-3 border-2 border-purple-400 bg-slate-900 text-white rounded-xl flex flex-col justify-between min-h-200">
             <Image src={imageUrl}
                 alt="Gallary Image"
-                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-104 cursor-pointer` : ""}`}
+                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-105 cursor-pointer` : ""}`}
                 width={200}
                 height={200}
                 onClick={() => {
@@ -38,22 +39,22 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                     setOverlay(true)
                 }} unoptimized />
             <div className={`${fullScreen ? "d-none" : "flex justify-between px-4 mt-3"}`}>
-                <button className="p-1 rounded-full border-2 border-red-400"
+                <Button className="p-1 rounded-full border-2 border-red-400"
                     onClick={(e) => {
                         deleteImage(id, setImages, imageName, folderUrl)
-                    }}><MdDeleteSweep size="1.5rem" color="rgb(255, 81, 116)" /></button>
-                <button className="p-1 rounded-full border-2 border-blue-400"
+                    }}><MdDeleteSweep size="1.5rem" color="rgb(255, 81, 116)" /></Button>
+                <Button className="p-1 rounded-full border-2 border-blue-400"
                     onClick={() => {
                         saveAs(imageUrl, imageName)
                     }}>
                     <BiCloudDownload size="1.5rem" color='rgb(81, 217, 255)' />
-                </button>
-                <button className='text-sm' onClick={() => {
+                </Button>
+                <Button className='text-sm' onClick={() => {
                     setDetailPopup(true)
                     setOverlay(true)
                 }}>
                     <FcViewDetails className="p-1 rounded-full border-2 border-blue-400" size="2rem" />
-                </button>
+                </Button>
                 <Details
                     details={[
                         { name: "Name", value: imageName },
@@ -62,13 +63,13 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                         { name: "Content-Type", value: contentType },
                         { name: "ID", value: id },
                         {
-                            button: <button className="flex text-black items-center mt-2 text-sm md:text-lg" onClick={() => {
+                            button: <Button className="flex text-black items-center mt-2 text-sm md:text-lg" onClick={() => {
                                 CopyContent(imageUrl)
                                 setUrlCopiedText(true)
                                 setTimeout(() => {
                                     setUrlCopiedText(false)
                                 }, 1000);
-                            }}><FaCopy /> Copy Url <span className="text-sm font-semibold ml-3">{urlCopiedText ? "Copied!" : ""}</span></button>
+                            }}><FaCopy /> Copy Url <span className="text-sm font-semibold ml-3">{urlCopiedText ? "Copied!" : ""}</span></Button>
                         }
                     ]}
                     detailPopup={detailPopup}
@@ -109,12 +110,12 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                 </label>
             </div>
 
-            <button
-                className={fullScreen ? "fixed z-104 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
+            <Button
+                className={fullScreen ? "fixed z-106 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
                 onClick={() => {
                     setFullScreen(false)
                     setOverlay(false)
-                }}><RxCross1 /></button>
+                }}><RxCross1 /></Button>
         </div>
     )
 }

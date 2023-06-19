@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import Login from "../../components/Login"
+import Login from "@/components/Login"
 
 function Signin() {
     const router = useRouter()

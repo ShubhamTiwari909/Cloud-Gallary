@@ -2,6 +2,8 @@ import { useState } from "react"
 import Head from "next/head"
 import styles from "@/styles/Form.module.css";
 import { addFeedbackToDB } from "../../firebase/Feedback";
+import Para from "@/components/atoms/text/Para";
+import Button from "@/components/atoms/Button";
 const Folder = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -80,7 +82,7 @@ const Folder = () => {
                         </div>
 
                         <div className="items-center">
-                            <p className="text-slate-100 text-center mb-4 font-semibold text-lg">Issue Level</p>
+                            <Para className="text-slate-100 text-center mb-4 font-semibold text-lg">Issue Level</Para>
                             <div className="grid grid-cols-5 gap-7 items-center text-center text-white">
                                 {levels.map(({ level, color }, index) => {
                                     return (
@@ -94,7 +96,7 @@ const Folder = () => {
                             </div>
                         </div>
 
-                        <button className="enter" onClick={(e) => submitFeedback(e)}>Submit</button>
+                        <Button className="enter" onClick={(e) => submitFeedback(e)}>Submit</Button>
 
                     </div>
                 </div>
