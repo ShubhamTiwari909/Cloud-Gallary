@@ -87,15 +87,3 @@ export const deleteAllImages = (allImages, setImages, folderName) => {
     });
 }
 
-
-export const deleteAllImagesFromDB = async (folderName) => {
-    const databaseRef = collection(database, `/Gallary/Images/${sessionStorage.getItem("uid")}/${folderName}/images`)
-    await getDocs(databaseRef)
-        .then(response => {
-            console.log(response.docs.map(data => {
-                return { ...data.data(), id: data.id }
-            }))
-        }).catch(err => {
-            console.error(err)
-        })
-}

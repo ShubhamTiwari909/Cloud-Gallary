@@ -514,3 +514,73 @@ strong {
 
 
 
+/* BLUE BUTTON HOVERED */
+.btn--blue-hover {
+  position: relative;
+  width: 120px;
+  height: 40px;
+  background-color: #000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: none;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn--blue-hover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -4px;
+  top:-1px;
+  margin: auto;
+  width: 128px;
+  height: 48px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100% );
+  z-index: -10;
+  pointer-events: none;
+  -webkit-transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.btn--blue-hover::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100% );
+  -webkit-transform: translate3d(0, 0, 0) scale(0.95);
+          transform: translate3d(0, 0, 0) scale(0.95);
+  -webkit-filter: blur(20px);
+          filter: blur(20px);
+}
+
+.btn--blue-hover:hover::after {
+  -webkit-filter: blur(30px);
+          filter: blur(30px);
+}
+
+.btn--blue-hover:hover::before {
+  -webkit-transform: rotate(-180deg);
+      -ms-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+}
+
+.btn--blue-hover:active::before {
+  scale: 0.7;
+}

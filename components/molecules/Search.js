@@ -11,7 +11,7 @@ function Search() {
                 className={styles.input_md}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                title="Search"
+                title=""
                 name="search"
                 placeholder="Search"
             />

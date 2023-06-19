@@ -12,15 +12,15 @@ export default function Footer() {
   return (
     <footer className="bg-black">
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
-        <nav className="flex flex-wrap justify-center -mx-5 -my-2">
+        <nav className="flex flex-col justify-center gap-4 md:flex-row items-center -mx-5 -my-2">
           <div className="px-5 py-2">
-            <Link href="/folders/navigation" className='text-white rounded-lg border border-white px-4 py-2'>Gallary</Link>
+            <Link href="/folders/navigation" className='text-white rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-slate-800'>Gallary</Link>
           </div>
           <div className="px-5 py-2">
-            <Link href="/contacts" className='text-white rounded-lg border border-white px-4 py-2'>Contacts</Link>
+            <Link href="/contacts" className='text-white rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-slate-800'>Contacts</Link>
           </div>
           <div className="px-5 py-2">
-            <Link href="/feedback" className='text-white rounded-lg border border-white px-4 py-2'>Feedback</Link>
+            <Link href="/feedback" className='text-white rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-slate-800'>Feedback</Link>
           </div>
         </nav>
         <div className="flex justify-center items-center mt-8 space-x-6">

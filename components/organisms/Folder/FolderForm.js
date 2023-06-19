@@ -34,11 +34,19 @@ function FolderForm({ setToggle }) {
                     }}>Cancel</Button>
                 </div>
                 :
+                // <Button onClick={(e) => {
+                //     addFolderToDB(e, folder, setFolder)
+                //     getFolders(setFolders)
+                //     setToggle("")
+                // }} className={`${formStyles.button_sm} ${formStyles.button_blue}`}>Add</Button>
                 <Button onClick={(e) => {
                     addFolderToDB(e, folder, setFolder)
                     getFolders(setFolders)
                     setToggle("")
-                }} className={`${formStyles.button_sm} ${formStyles.button_blue}`}>Add</Button>
+                }}
+                    className="btn--blue-hover">
+                    Add
+                </Button>
             }
         </form>
 

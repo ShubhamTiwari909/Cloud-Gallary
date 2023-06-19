@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import styles from '@/styles/Form.module.css'
 import InputGroup from '@/components/atoms/InputGroup'
 import { handleUpload } from '../../../firebase/Gallary/GallaryUpload';
-import { addImageToDB, getData, deleteAllImagesFromDB } from "../../../firebase/Gallary/dbOperations"
+import { addImageToDB, getData } from "../../../firebase/Gallary/dbOperations"
 import { AppContext } from '../../Context';
 import Link from 'next/link'
 import { RxDoubleArrowLeft } from "react-icons/rx"
@@ -97,24 +97,23 @@ function GallaryForm({ folderName }) {
                     }} disabled={[...file].length === success ? "" : "disabled"}>
                         {[...file].length === success ? "Upload" : "Waiting..."}
                     </Button>
-                    <Button className={`${styles.button_sm} ${[...file].length === success ? styles.button_purple : "bg-blue-400 ml-4"}`} onClick={(e) => {
+                    <Button className={`${styles.button_sm} ${[...file].length === success ? "bg-gray-600 ml-4 cursor-none" : styles.button_purple}`} onClick={(e) => {
                         if (targetFiles.length !== 0) {
                             handleUpload(e, targetFiles, folderName, setUrl, setSuccess)
                         }
-                    }}>
-                        Add to Cloud
+                    }} disabled={[...file].length === success ? "disabled" : ""}>
+                        {[...file].length === success ? "Added" : "Add to Cloud"}
                     </Button>
                 </div>
 
 
                 <Button onClick={() => {
-                    deleteAllImagesFromDB(folderName)
                     setToggleUpload(false)
-                    setSuccess(0)
-                    setTargetFiles([])
                     setOverlay(false);
-                    setToggleUpload(false)
-                }} className='absolute top-2 right-2'><AiOutlineClose size="1rem" />
+                }} 
+                className={`absolute top-2 right-2 ${[...file].length === success ? "hidden pointer-events-none" : ""}`}
+                disabled={[...file].length === success ? "disabled" : ""}>
+                    <AiOutlineClose size="1rem" />
                 </Button>
             </div>
         </>

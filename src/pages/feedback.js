@@ -96,7 +96,7 @@ const Folder = () => {
                             </div>
                         </div>
 
-                        <Button className="enter" onClick={(e) => submitFeedback(e)}>Submit</Button>
+                        <Button className="submit" onClick={(e) => submitFeedback(e)}>Submit</Button>
 
                     </div>
                 </div>

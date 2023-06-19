@@ -110,9 +110,9 @@
     border-radius: 8px;
   }
   
-  .dark-form-card .enter {
-    height: 45px;
-    width: 100px;
+  .dark-form-card .submit {
+    padding: .5rem 1.6rem;
+    text-align: center;
     border-radius: 5px;
     border: 2px solid #ffffff;
     color: #ffffff;
@@ -121,12 +121,11 @@
     -webkit-transition: 0.5s;
     transition: 0.5s;
     text-transform: uppercase;
-    font-size: 10px;
-    letter-spacing: 2px;
+    font-size: 1rem;
     margin-bottom: 3em;
   }
   
-  .dark-form-card .enter:hover {
+  .dark-form-card .submit:hover {
     background-color: #ffffff;
     color: #000000;
   }
