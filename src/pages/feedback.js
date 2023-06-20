@@ -6,7 +6,7 @@ import Para from "@/components/atoms/text/Para";
 import Button from "@/components/atoms/Button";
 import { useRouter } from "next/router";
 import { AppContext } from "@/components/Context";
-const Folder = () => {
+const Feedback= () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [feedbackMessage, setFeedbackMessage] = useState("")
@@ -117,6 +117,6 @@ const Folder = () => {
     )
 }
 
-export default Folder
+export default Feedback
 
 

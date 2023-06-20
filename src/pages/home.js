@@ -4,7 +4,7 @@ import ImageGallary from '@/components/organisms/ImageGallary'
 import { useRouter } from 'next/router'
 import { AppContext } from '@/components/Context'
 
-function home() {
+function Home() {
   const router = useRouter()
   const { setTokenId } = useContext(AppContext)
   useEffect(() => {
@@ -50,4 +50,4 @@ function home() {
   )
 }
 
-export default home
+export default Home
