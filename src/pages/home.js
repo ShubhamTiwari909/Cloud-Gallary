@@ -1,8 +1,19 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import ImageGallary from '@/components/organisms/ImageGallary'
+import { useRouter } from 'next/router'
+import { AppContext } from '@/components/Context'
 
 function home() {
+  const router = useRouter()
+  const { setTokenId } = useContext(AppContext)
+  useEffect(() => {
+      let token = sessionStorage.getItem("Token")
+      setTokenId(token)
+      if (!token) {
+          router.push("/")
+      }
+  }, [])
   return (
     <>
       <div className="bg-slate-900 px-6 py-20 md:px-24 lg:px-24 lg:py-24">
@@ -10,7 +21,7 @@ function home() {
           <div className="mb-16 lg:mb-0 lg:max-w-lg lg:pr-5">
             <div className="max-w-xl mb-6">
               <h2 className="font-sans text-3xl font-bold tracking-tight text-gray-100 sm:text-4xl sm:leading-none max-w-lg mb-6">
-                Every image you
+                Every image you {' '}
                 <br className="hidden md:block" />
                 need to store{' '}
                 <span className="inline-block text-violet-300">can be here</span>

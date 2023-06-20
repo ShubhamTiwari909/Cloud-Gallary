@@ -11,7 +11,7 @@ import FolderHeader from "./FolderHeader";
 
 
 function FolderNavbar() {
-    const { folders, setFolders, folderStorage, setFolderStorage, search } = useContext(AppContext)
+    const { folders, setFolders, folderStorage, setFolderStorage } = useContext(AppContext)
 
     const [toggle, setToggle] = useState("")
     useEffect(() => {

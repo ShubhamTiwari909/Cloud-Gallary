@@ -13,6 +13,9 @@ export default function Footer() {
     <footer className="bg-black">
       <div className="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
         <nav className="flex flex-col justify-center gap-4 md:flex-row items-center -mx-5 -my-2">
+        <div className="px-5 py-2">
+            <Link href="/home" className='text-white rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-slate-800'>Home</Link>
+          </div>
           <div className="px-5 py-2">
             <Link href="/folders/navigation" className='text-white rounded-lg border border-white px-4 py-2 hover:bg-white hover:text-slate-800'>Gallary</Link>
           </div>

@@ -13,7 +13,7 @@ import SelectField from '@/components/atoms/SelectField'
   
 
 function Gallary({ folderName, folderUrl }) {
-    const { images, setImages, overlay } = useContext(AppContext)
+    const { images, setImages, overlay,search } = useContext(AppContext)
     const [contentType,setContentType] = useState("All")
 
     useEffect(() => {
@@ -23,6 +23,11 @@ function Gallary({ folderName, folderUrl }) {
 
     const imagesList =  useMemo(() => 
         images.filter(item => {
+            if(search === ""  || search.startsWith(" ")) return item
+
+            return item.imageName.toLocaleLowerCase().startsWith(search.toLocaleLowerCase())
+        })
+        .filter(item => {
             if(contentType === "All") return item
 
             return item.contentType.includes(contentType.toLocaleLowerCase())
@@ -40,7 +45,7 @@ function Gallary({ folderName, folderUrl }) {
                     folderUrl={folderUrl}
                 />
             )
-        }), [images,contentType])
+        }), [images,contentType,search])
     
 
     return (

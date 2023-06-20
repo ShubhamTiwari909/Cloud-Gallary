@@ -1,9 +1,11 @@
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import Head from "next/head"
 import styles from "@/styles/Form.module.css";
 import { addFeedbackToDB } from "../../firebase/Feedback";
 import Para from "@/components/atoms/text/Para";
 import Button from "@/components/atoms/Button";
+import { useRouter } from "next/router";
+import { AppContext } from "@/components/Context";
 const Folder = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
@@ -42,6 +44,16 @@ const Folder = () => {
             addFeedbackToDB(username, setUsername, email, setEmail, feedbackMessage, setFeedbackMessage, issueLevel, setIssueLevel)
         }
     }
+
+    const router = useRouter()
+    const { setTokenId } = useContext(AppContext)
+    useEffect(() => {
+        let token = sessionStorage.getItem("Token")
+        setTokenId(token)
+        if (!token) {
+            router.push("/")
+        }
+    }, [])
 
     return (
         <>

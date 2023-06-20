@@ -79,7 +79,7 @@ App.propTypes = {
   overlay: PropTypes.bool,
   selectAll: PropTypes.bool,
   deleteAll: PropTypes.array,
-  search:PropTypes.string,
+  search: PropTypes.string,
 
   // Setters for States
   setTokenId: PropTypes.func,
@@ -92,5 +92,5 @@ App.propTypes = {
   setOverlay: PropTypes.func,
   setSelectAll: PropTypes.func,
   setDeleteAll: PropTypes.func,
-  setSearch:PropTypes.func,
+  setSearch: PropTypes.func,
 }

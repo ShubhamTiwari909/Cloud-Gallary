@@ -10,6 +10,8 @@ import { AiOutlineClose } from "react-icons/ai"
 import PropTypes from "prop-types";
 import Para from '@/components/atoms/text/Para';
 import Button from '@/components/atoms/Button';
+import Search from '@/components/molecules/Search';
+import { CgSearchLoading } from 'react-icons/cg';
 
 function GallaryForm({ folderName }) {
     const { setImages, setOverlay } = useContext(AppContext);
@@ -20,10 +22,12 @@ function GallaryForm({ folderName }) {
     const [successUpload, setSuccessUpload] = useState(false)
     const [targetFiles, setTargetFiles] = useState([])
     const [toggleUpload, setToggleUpload] = useState(false)
+    const [openSearch,setOpenSearch] = useState(false)
+
+    const isOpenSearch = () => setOpenSearch(!openSearch)
 
     useEffect(() => {
         const Files = [...file]
-        console.log(Files)
         Files.forEach((element) => {
             element.percent = 0
         });
@@ -36,8 +40,8 @@ function GallaryForm({ folderName }) {
             <Para className={successUpload ? "fixed top-0 -ml-4 w-full text-center py-3 bg-green-500 text-white" : "hidden"}>Files Uploaded Successfully</Para>
             <div className="w-full fixed top-18 md:top-20 flex gap-4 justify-end md:justify-center flex-wrap z-102 py-2.5 md:py-4 px-2 bg-gradient-to-r from-black via-gray-900 to-slate-800 -ml-4">
                 <Link href="/folders/navigation"
-                    className='fixed left-1.5 top-19 md:top-24 z-102 text-slate-100 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-800 text-sm'>
-                    <RxDoubleArrowLeft size="1rem" />Folders</Link>
+                    className='fixed left-1.5 top-19 md:top-24 z-102 text-slate-800 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-100 text-sm'>
+                    <RxDoubleArrowLeft size="1rem" /></Link>
                 <form className="flex gap-4 justify-center items-center flex-wrap">
                     <InputGroup
                         type="file"
@@ -65,6 +69,10 @@ function GallaryForm({ folderName }) {
                         Continue
                     </Button>
                 </form>
+                <button className='px-4 py-1 border border-white rounded-md' onClick={isOpenSearch}><CgSearchLoading color='#ffffff' size="1.4rem" /></button>
+                <div className={`justify-center w-full ${openSearch ? "flex" : "hidden"}`}>
+                    <Search />
+                </div>
             </div>
 
             <div className={`fixed right-0 top-2/4 -translate-y-2/4 px-6 pt-3 rounded-xl bg-white h-3/4 z-105
