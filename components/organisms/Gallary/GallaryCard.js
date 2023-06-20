@@ -2,6 +2,7 @@ import { useState, useContext } from "react"
 import { MdDeleteSweep } from "react-icons/md"
 import { BiCloudDownload } from "react-icons/bi"
 import { RxCross1 } from "react-icons/rx"
+import { BsArrowsFullscreen } from "react-icons/bs"
 import { deleteImage } from "../../../firebase/Gallary/dbOperations"
 import styles from '@/styles/Gallary.module.css'
 import CopyContent from "@/methods/CopyContent";
@@ -13,6 +14,9 @@ import {
     WhatsappShareButton,
     WhatsappIcon
 } from "react-share"
+import { Worker, Viewer } from '@react-pdf-viewer/core';
+import '@react-pdf-viewer/core/lib/styles/index.css';
+
 import Details from "@/molecules/Details"
 import { saveAs } from 'file-saver';
 import Image from "next/image"
@@ -28,16 +32,36 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
     const [urlCopiedText, setUrlCopiedText] = useState(false)
     const [tick, setTick] = useState(false)
     return (
-        <div className="relative p-3 border-2 border-purple-400 bg-slate-900 text-white rounded-xl flex flex-col justify-between min-h-200">
-            <Image src={imageUrl}
-                alt="Gallary Image"
-                className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-105 cursor-pointer` : ""}`}
-                width={200}
-                height={200}
-                onClick={() => {
-                    setFullScreen(true)
-                    setOverlay(true)
-                }} unoptimized />
+        <div className={`relative p-3 border-2 ${ contentType.includes("image") ? "border-blue-400" : "border-red-400"}  bg-slate-900 text-white rounded-xl flex flex-col justify-between min-h-200`}>
+            {
+                contentType.includes("image") ?
+                    <>
+                        <Image src={imageUrl}
+                            alt="Gallary Image"
+                            className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-105 cursor-pointer` : ""}`}
+                            width={200}
+                            height={200}
+                            onClick={() => {
+                                setFullScreen(true)
+                                setOverlay(true)
+                            }} unoptimized />
+                        {/* Cross icon for closing full view image */}
+                        <Button
+                            className={fullScreen ? "fixed z-106 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
+                            onClick={() => {
+                                setFullScreen(false)
+                                setOverlay(false)
+                            }}><RxCross1 /></Button>
+                    </>
+                    :
+                    <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.min.js">
+                        <div className="h-48 w-48">
+                            <Viewer fileUrl={imageUrl} />
+                        </div>
+                    </Worker>
+            }
+
+
             <div className={`${fullScreen ? "d-none" : "flex justify-between px-4 mt-3"}`}>
                 <Button className="p-1 rounded-full border-2 border-red-400"
                     onClick={(e) => {
@@ -53,7 +77,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                     setDetailPopup(true)
                     setOverlay(true)
                 }}>
-                    <FcViewDetails className="p-1 rounded-full border-2 border-blue-400" size="2rem" />
+                    <FcViewDetails className={`p-1 rounded-full border-2 ${ contentType.includes("image") ? "border-blue-400" : "border-red-400"}`} size="2rem" />
                 </Button>
                 <Details
                     details={[
@@ -84,6 +108,10 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                 <WhatsappShareButton url={imageUrl}>
                     <WhatsappIcon size={32} round={true} />
                 </WhatsappShareButton>
+                <a href={imageUrl} className="border border-white rounded-full p-1.5" target="_blank" rel="noopener noreferrer">
+                    <BsArrowsFullscreen size="1rem" color="#ffffff" />
+                </a>
+
                 <label htmlFor={id} className={`relative cursor-pointer ${selectAll ? "" : "hidden"}`}>
                     <input
                         id={id}
@@ -110,27 +138,22 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                 </label>
             </div>
 
-            <Button
-                className={fullScreen ? "fixed z-106 bg-white text-black rounded-md p-4 top-1.5 right-1.5" : "hidden"}
-                onClick={() => {
-                    setFullScreen(false)
-                    setOverlay(false)
-                }}><RxCross1 /></Button>
+
         </div>
     )
 }
 
 GallaryCard.propTypes = {
-    detailPopup:PropTypes.bool,
-    setDetailPopup:PropTypes.func,
+    detailPopup: PropTypes.bool,
+    setDetailPopup: PropTypes.func,
 
-    fullScreen:PropTypes.bool,
-    setFullScreen:PropTypes.func,
+    fullScreen: PropTypes.bool,
+    setFullScreen: PropTypes.func,
 
-    urlCopiedText:PropTypes.bool,
-    setUrlCopiedText:PropTypes.func,
+    urlCopiedText: PropTypes.bool,
+    setUrlCopiedText: PropTypes.func,
 
-    tick:PropTypes.bool,
-    setTick:PropTypes.func
+    tick: PropTypes.bool,
+    setTick: PropTypes.func
 }
 export default GallaryCard

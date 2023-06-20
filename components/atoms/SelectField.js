@@ -6,7 +6,7 @@ function SelectField({className,value,onChange,options=[]}) {
         <select value={value} onChange={onChange} className={className}>
             {options.map(option => {
                 return (
-                    <option key={option} value={option}>{optionText} - {option}</option>
+                    <option key={option} value={option}>{option}</option>
                 )
             })}
         </select>

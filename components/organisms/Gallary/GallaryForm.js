@@ -23,6 +23,7 @@ function GallaryForm({ folderName }) {
 
     useEffect(() => {
         const Files = [...file]
+        console.log(Files)
         Files.forEach((element) => {
             element.percent = 0
         });
@@ -33,7 +34,7 @@ function GallaryForm({ folderName }) {
     return (
         <>
             <Para className={successUpload ? "fixed top-0 -ml-4 w-full text-center py-3 bg-green-500 text-white" : "hidden"}>Files Uploaded Successfully</Para>
-            <div className="w-full fixed top-18 md:top-20 flex gap-4 justify-end md:justify-center flex-wrap z-102 py-2.5 md:py-4 px-2 bg-gradient-to-r from-violet-400 to-purple-400 -ml-4">
+            <div className="w-full fixed top-18 md:top-20 flex gap-4 justify-end md:justify-center flex-wrap z-102 py-2.5 md:py-4 px-2 bg-gradient-to-r from-black via-gray-900 to-slate-800 -ml-4">
                 <Link href="/folders/navigation"
                     className='fixed left-1.5 top-19 md:top-24 z-102 text-slate-100 flex gap-2 items-center px-4 py-2 rounded-full bg-slate-800 text-sm'>
                     <RxDoubleArrowLeft size="1rem" />Folders</Link>
@@ -48,7 +49,7 @@ function GallaryForm({ folderName }) {
                         title="Upload File"
                         name="file"
                         placeholder=""
-                        accept="image/*"
+                        accept="image/*,application/pdf"
                     />
                     <Button className="btn--black"
                         onClick={(e) => {

@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useContext } from 'react'
+import React, { useState,useMemo, useEffect, useContext } from 'react'
 import { getData } from "@/firebase/Gallary/dbOperations"
 import GallaryCard from "./GallaryCard"
 import GallaryForm from "./GallaryForm"
@@ -8,19 +8,27 @@ import { getFolderSize } from '../../../firebase/Gallary/folderOperations'
 import GallaryHeader from './GallaryHeader'
 import H1 from '@/components/atoms/text/H1'
 import Para from '@/components/atoms/text/Para'
+import SelectField from '@/components/atoms/SelectField'
 
   
 
 function Gallary({ folderName, folderUrl }) {
     const { images, setImages, overlay } = useContext(AppContext)
+    const [contentType,setContentType] = useState("All")
+
     useEffect(() => {
         // Find all the prefixes and items.
         getData(setImages, folderUrl)
     }, [folderUrl])
 
     const imagesList =  useMemo(() => 
-        images.map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
-            return (
+        images.filter(item => {
+            if(contentType === "All") return item
+
+            return item.contentType.includes(contentType.toLocaleLowerCase())
+        })
+        .map(({ id, imageUrl, imageName, createdAt, size, contentType }) => {
+            return (    
                 <GallaryCard
                     key={id}
                     id={id}
@@ -32,7 +40,8 @@ function Gallary({ folderName, folderUrl }) {
                     folderUrl={folderUrl}
                 />
             )
-        }), [images])
+        }), [images,contentType])
+    
 
     return (
         <div className='gallary'>
@@ -53,10 +62,14 @@ function Gallary({ folderName, folderUrl }) {
                 <GallaryForm folderName={folderUrl} />
 
                 <section className={`my-10 flex gap-8 flex-wrap px-4 justify-center  `}>
-                    {images.length === 0 ? <h1 className="text-center"></h1> :
+                    { imagesList.length === 0 ? <h1 className="text-center text-white text-2xl">No File Found</h1> :
                        imagesList
                     }
                 </section>
+
+                <SelectField value={contentType} onChange={(e) => setContentType(e.target.value)} className='border bg-black text-white border-gray-500 rounded-lg px-2 py-1 fixed right-2 top-40 md:top-44' options={
+                    ["All","Image","Pdf"]
+                } />
             </div>
         </div>
     )
