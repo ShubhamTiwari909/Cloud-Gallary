@@ -8,7 +8,7 @@ function Signin() {
     useEffect(() => {
         let token = sessionStorage.getItem("Token")
         if (token) {
-            router.push("/folders/navigation")
+            router.push("/home")
         }
     }, [])
 

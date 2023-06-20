@@ -7,7 +7,7 @@ export const signupWithGoogle = (router) => {
         .then(response => {
             sessionStorage.setItem("Token", response.user.accessToken)
             sessionStorage.setItem("uid", response.user.email + response.user.accessToken.slice(0,15))
-            router.push("/folders/navigation")
+            router.push("/home")
         })
         .catch(err => console.log("error"))
 }
