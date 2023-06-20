@@ -3,7 +3,7 @@ import Contacts from "../../components/Contacts"
 import { AppContext } from "@/components/Context"
 import { useRouter } from "next/router"
 
-function Contacts() {
+function Contact() {
   const router = useRouter()
   const { setTokenId } = useContext(AppContext)
   useEffect(() => {
@@ -20,4 +20,4 @@ function Contacts() {
   )
 }
 
-export default Contacts
+export default Contact
