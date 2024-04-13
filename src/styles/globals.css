@@ -69,9 +69,6 @@
     --radius: 0.5rem;
   }
 }
- 
-
-
 
 /* CUSTOM */
 
@@ -79,7 +76,6 @@
 .text-ellipse {
   @apply max-w-200 text-ellipsis whitespace-nowrap overflow-hidden;
 }
-
 
 .absolute-center {
   @apply top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4;

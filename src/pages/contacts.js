@@ -14,7 +14,7 @@ function Contact() {
       }
   }, [])
   return (
-    <div className="px-4 pt-28 py-10 bg-slate-300 h-screen flex justify-center flex-col">
+    <div className="px-4 py-12 bg-slate-300 min-h-screen flex justify-center flex-col">
         <Contacts />
     </div>
   )
