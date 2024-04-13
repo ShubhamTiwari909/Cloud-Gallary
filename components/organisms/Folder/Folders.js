@@ -14,12 +14,14 @@ function FolderNavbar() {
     const { folders, setFolders, folderStorage, setFolderStorage } = useContext(AppContext)
 
     const [toggle, setToggle] = useState("")
+
+    // Use to get the folders from the database and set it to the state.
     useEffect(() => {
         getFolders(setFolders)
         setTimeout(() => {
             getStorageSize(folders, setFolderStorage)
         }, 1000);
-    }, [folderStorage])
+    }, [folderStorage]) // if the folder storage is updated, then the code will rerun inside
 
 
     return <>

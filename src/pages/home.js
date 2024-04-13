@@ -10,6 +10,7 @@ function Home() {
   useEffect(() => {
       let token = sessionStorage.getItem("Token")
       setTokenId(token)
+      
       if (!token) {
           router.push("/")
       }

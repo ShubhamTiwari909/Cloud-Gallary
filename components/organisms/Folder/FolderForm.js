@@ -13,22 +13,22 @@ function FolderForm({ setToggle }) {
     };
 
     const handleUpdate = (e) => {
-        updateFolderToDB(e, folder, setFolder, updateId);
-        getFolders(setFolders);
-        setUpdate(false);
-        setToggle("");
+        updateFolderToDB(e, folder, setFolder, updateId); // update the folder name in database
+        getFolders(setFolders); // get the updated folder name from the database
+        setUpdate(false); // set the update toggle to false
+        setToggle(""); // close the form
     };
 
     const handleCancel = () => {
-        setFolder("");
-        setUpdate(false);
-        setToggle("");
+        setFolder(""); // set the folder name input to an empty string
+        setUpdate(false); // set the update toggle to false
+        setToggle(""); // close the form
     };
 
     const handleAddFolder = (e) => {
-        addFolderToDB(e, folder, setFolder);
-        getFolders(setFolders);
-        setToggle("");
+        addFolderToDB(e, folder, setFolder); // add the folder name to the database
+        getFolders(setFolders); // get the updated folder name from the database
+        setToggle(""); // close the form
     };
 
     return (

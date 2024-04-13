@@ -94,7 +94,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                     </Button>
                 </>
             ) : (
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.7.107/build/pdf.worker.min.js">
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.11.174/build/pdf.worker.min.js">
                     <div className="h-48 w-48">
                         <Viewer fileUrl={imageUrl} />
                     </div>

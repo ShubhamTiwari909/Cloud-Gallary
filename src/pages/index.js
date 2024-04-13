@@ -5,6 +5,7 @@ import Login from "@/components/Login"
 
 function Signin() {
     const router = useRouter()
+    // Use to check whether the token is there after login
     useEffect(() => {
         let token = sessionStorage.getItem("Token")
         if (token) {

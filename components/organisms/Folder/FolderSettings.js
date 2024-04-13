@@ -45,10 +45,10 @@ const FolderSettings = ({ id, folderName, folderUrl, createdAt, setToggle }) => 
     };
 
     const handleRenameClick = () => {
-        getId(id, setUpdateId, folderName, setFolder);
-        setUpdate(true);
-        setSettings(false);
-        setToggle("ADD");
+        getId(id, setUpdateId, folderName, setFolder); // get the folder id and update the folderId to rename the folder
+        setUpdate(true); // set the update toggle to true
+        setSettings(false); // close the settings
+        setToggle("ADD"); // close the update form
     };
 
     const handleDetailsClick = () => {
