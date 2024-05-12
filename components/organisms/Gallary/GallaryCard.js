@@ -72,7 +72,7 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                 <>
                     <Image
                         src={imageUrl}
-                        alt="Gallary Image"
+                        alt={imageName}
                         className={`border-2 h-48 border-white rounded-lg ${fullScreen ? `${styles.full_screen} z-105 cursor-pointer` : ""}`}
                         width={200}
                         height={200}
@@ -100,6 +100,8 @@ function GallaryCard({ id, folderUrl, imageUrl, imageName, createdAt, size, cont
                     </div>
                 </Worker>
             )}
+
+            <p className="mt-4 mb-2 text-sm bg-white text-slate-900 p-2 overflow-hidden text-center rounded-lg">{imageName.substring(0, imageName.lastIndexOf('.')).slice(0,20)}...</p>
 
             <div className={`${fullScreen ? "hidden" : "flex justify-between px-4 mt-3"}`}>
                 <Button className="p-1 rounded-full border-2 border-red-400" onClick={handleDeleteImage}>
