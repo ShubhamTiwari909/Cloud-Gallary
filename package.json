@@ -17,7 +17,7 @@
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
     "file-saver": "^2.0.5",
-    "firebase": "^9.17.1",
+    "firebase": "^10.1.0",
     "html-to-image": "^1.11.11",
     "next": "13.1.6",
     "pdfjs-dist": "^3.11.174",
